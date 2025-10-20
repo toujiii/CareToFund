@@ -5,7 +5,50 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+:root {
+    /*Colors*/
+    color: white;
+    --dark-color: #191a20;
+    --light-dark-color: #272934;
+    --primary-purple: #a1a2ed;
+    --pink: #cca1ed;
+
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-color);
+
+}
+
+.sideContent{
+    background: #7969BB;
+    background: linear-gradient(180deg,rgba(121, 105, 187, 1) 0%, rgba(69, 62, 112, 1) 40%, rgba(25, 29, 50, 1) 100%);
+}
+
+.btn-primary-purple{
+    background-color: var(--primary-purple);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}   
+
+.btn-primary-purple:hover{
+    background-color: #8c8de0;
+}
+
+.btn-pink{
+    background-color: var(--pink);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-pink:hover{
+    background-color: #b887e0;
+}
+
+.text-pink{
+    color: var(--pink);
 }
