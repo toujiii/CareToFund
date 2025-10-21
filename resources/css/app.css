@@ -10,8 +10,12 @@
     color: white;
     --dark-color: #191a20;
     --light-dark-color: #272934;
+    --light: #505366;
     --primary-purple: #a1a2ed;
-    --pink: #cca1ed;
+    --secondary-purple: #474a95;
+    --tertiary-purple: #7274bf;
+    --pink: #d190d8;
+    --red-color: #ff5757;
 
     font-family: 'Poppins', sans-serif;
     background-color: var(--dark-color);
@@ -46,9 +50,116 @@
 }
 
 .btn-pink:hover{
-    background-color: #b887e0;
+    background-color: #c776c3;
 }
 
 .text-pink{
     color: var(--pink);
+}
+
+.text-secondary-purple{
+    color: var(--secondary-purple);
+}
+
+.bg-light-dark{
+    background-color: var(--light-dark-color);
+}
+
+.bg-light{
+    background-color: var(--light);
+}
+
+.hover\:bg-light:hover {
+    background-color: #444657;
+}
+
+.bg-dark{
+    background-color: var(--dark-color);
+}
+
+.hover\:bg-dark:hover {
+    background-color: #14151a;
+}
+
+.bg-primary-purple{
+    background-color: var(--primary-purple);
+}
+
+.bg-secondary-purple{
+    background-color: var(--secondary-purple);
+}
+
+.bg-tertiary-purple{
+    background-color: var(--tertiary-purple);
+}
+
+.btn-tertiary-purple{
+    background-color: var(--tertiary-purple);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.btn-tertiary-purple:hover{
+    background-color: #5c5ea8;
+}
+
+.btn-create-charity{
+    background: #974FFF;
+    background: linear-gradient(90deg,rgba(151, 79, 255, 1) 0%, rgba(228, 177, 255, 1) 51%);;
+}
+
+.btn-create-charity:hover{
+    background: #853de6;
+    background: linear-gradient(90deg,rgba(133, 61, 230, 1) 0%, rgba(200, 150, 230, 1) 61%);
+}
+
+.bg-new-charity{
+    background: #974FFF;
+    background: linear-gradient(90deg,rgba(151, 79, 255, 1) 0%, rgba(228, 177, 255, 1) 80%);
+}
+
+.btn-red-color{
+    background-color: var(--red-color);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-red-color:hover{
+    background-color: #e64545;
+}
+
+.btn-logout{
+    background-color: var(--secondary-purple);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-logout:hover{
+    background-color: var(--red-color);
+    color: white;
+}
+
+.btn-tertiary-purple{
+    background-color: var(--tertiary-purple);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+.btn-tertiary-purple:hover{
+    background-color: #5c5ea8;
+}
+
+.modal-backdrop {
+    background-color: rgba(6, 9, 15, 0.49);
 }
