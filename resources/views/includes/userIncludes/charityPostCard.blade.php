@@ -74,7 +74,7 @@
             </p>
         </div>
 
-        <div class="flex items-center justify-center gap-2 text-gray-300">
+        <!-- <div class="flex items-center justify-center gap-2 text-gray-300">
             <p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -84,13 +84,13 @@
             <p class="text-xs">
                 Sign in first to Donate
             </p>
-        </div>
+        </div> -->
 
         <!-- if may nakalog in -->
-        <!-- <button  class=" btn-pink ">
+        <button  class=" btn-pink ">
             <p class="  mx-1">
                 Donate
             </p>
-        </button> -->
+        </button>
     </div>
 </div>

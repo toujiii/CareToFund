@@ -9,69 +9,11 @@
             </svg>
         </button>
     </div>
-    <div class="bg-primary-purple h-fit w-full rounded-md p-4 flex flex-col gap-4 ">
-        <div class="flex items-center gap-2 ">
-            <div class="h-14 w-14 bg-gray-200 rounded-full">
+    
+    @include('includes.userIncludes.userProfileInfo')
 
-            </div>
-            <div class=" flex flex-col items-start ">
-                <div class="flex items-center gap-2">
-                    <p class="font-bold text-base ">
-                        John Doe
-                    </p>
-                    <div class="text-xs bg-yellow-400  rounded-lg px-2">
-                        Unverified
-                    </div>
-                    <!-- <div class="text-xs bg-green-500 text-white rounded-lg px-2">
-                        Verified
-                    </div> -->
-                </div>
-                <p class="text-xs text-gray-200 mb-2">
-                    john.doe@example.com
-                </p>
-            </div>
-
-        </div>
-        <div  class=" flex gap-2 ">
-            <button x-on:click="isSettingsModalOpen = true; activeTabSettings = 'editProfile'" class="btn-tertiary-purple flex-1 text-xs p-2 rounded-md">
-                Edit Profile
-            </button>
-            <button x-on:click="isSettingsModalOpen = true; activeTabSettings = 'resetPassword'" class="btn-tertiary-purple flex-1 text-xs p-2 rounded-md">
-                Password
-            </button>
-            <button x-on:click="isSettingsModalOpen = true; activeTabSettings = 'verifyAccount'" class="btn-tertiary-purple flex-1 text-xs p-2 rounded-md">
-                Verification
-            </button>
-        </div>
-    </div>
-    <div class=" bg-primary-purple h-fit w-full rounded-md p-4 flex  gap-4 ">
-        <div class="flex flex-col gap-2 flex-1 ">
-            <div class="flex justify-between">
-                <p class="text-sm font-bold">
-                    My Charities
-                </p>
-                <p class="text-sm font-bold ">
-                    4
-                </p>
-            </div>
-            <button class="btn-tertiary-purple text-xs p-2 rounded-md ">
-                View All Charities
-            </button>
-        </div>
-        <div class="flex flex-col gap-2 flex-1 ">
-            <div class="flex justify-between">
-                <p class="text-sm font-bold">
-                    My Donations
-                </p>
-                <p class="text-sm font-bold">
-                    19
-                </p>
-            </div>
-            <button class="btn-tertiary-purple text-xs p-2 rounded-md ">
-                View All Donations
-            </button>
-        </div>
-    </div>
+    @include('includes.userIncludes.userCharityDonationsCount')
+    
     <div class=" w-full  ">
         <p class="text-base">
             Current Charity
