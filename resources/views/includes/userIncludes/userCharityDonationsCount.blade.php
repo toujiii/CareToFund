@@ -8,7 +8,7 @@
                 4
             </p>
         </div>
-        <button class="btn-tertiary-purple text-xs p-2 rounded-md ">
+        <button @click="isCharityDonationModalOpen = true; activeTabCharityDonations = 'charity'"  class="btn-tertiary-purple text-xs p-2 rounded-md ">
             View All Charities
         </button>
     </div>
@@ -21,7 +21,7 @@
                 19
             </p>
         </div>
-        <button class="btn-tertiary-purple text-xs p-2 rounded-md ">
+        <button @click="isCharityDonationModalOpen = true; activeTabCharityDonations = 'donate'"  class="btn-tertiary-purple text-xs p-2 rounded-md ">
             View All Donations
         </button>
     </div>

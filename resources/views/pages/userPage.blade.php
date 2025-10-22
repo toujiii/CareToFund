@@ -2,14 +2,27 @@
 
 @section('userContent')
 
-<!-- Modal Section -->
-@include('includes.userIncludes.userModals.profileSettingsModal.userProfileSettings')
+
 
 <div
     x-data="{ 
         open: true, 
         activeTab: 'signin', 
         screenWidth: window.innerWidth, 
+        isSettingsModalOpen: false, 
+        activeTabSettings: 'editProfile', 
+        isCharityDonationModalOpen: false,
+        activeTabCharityDonations: 'charity',
+        isCreateNewCharityModalOpen: false,
+        newCharityStep: 1,
+        isCreateNewCharityConfirmationModalOpen: false,
+        isDonationModalOpen: false,
+        mobile: false, 
+        frontFacePreview: null, 
+        sideFacePreview: null,
+        idImagePreview: null,
+        newCharityFrontPreview: null,
+        newCharitySidePreview: null
     }"
     x-init="
         screenWidth = window.innerWidth;
@@ -42,12 +55,11 @@
 
                     @include('includes.userIncludes.charityPostCard')
 
-                @endfor
+                    @endfor
+                    </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 @endsection

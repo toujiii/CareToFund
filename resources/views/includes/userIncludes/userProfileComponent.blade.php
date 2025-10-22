@@ -1,4 +1,4 @@
-<div class="h-full w-full flex flex-col gap-4 ">
+<div  class="h-full w-full flex flex-col gap-4 ">
     <div :class="{ 'hidden': !mobile,}" class="flex items-center justify-between mb-4 ">
         <p class="text-3xl font-bold ">
             CareToFund
@@ -35,3 +35,13 @@
     </button>
 </div>
 
+<!-- Modal Section -->
+@include('includes.userIncludes.userModals.profileSettingsModal.userProfileSettings')
+
+@include('includes.userIncludes.userModals.charityDonationsModal.userCharityDonations')
+
+@include('includes.userIncludes.userModals.createNewCharityModal.userCreateNewCharity')
+
+@include('includes.userIncludes.userModals.createNewCharityModal.newCharityConfirmation')
+
+@include('includes.userIncludes.userModals.donationModal.userDonations')
