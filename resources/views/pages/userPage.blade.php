@@ -17,6 +17,8 @@
         newCharityStep: 1,
         isCreateNewCharityConfirmationModalOpen: false,
         isDonationModalOpen: false,
+        isCancelPendingCharityModalOpen: false,
+        isViewDonationsModalOpen: false,
         mobile: false, 
         frontFacePreview: null, 
         sideFacePreview: null,

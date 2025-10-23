@@ -45,3 +45,7 @@
 @include('includes.userIncludes.userModals.createNewCharityModal.newCharityConfirmation')
 
 @include('includes.userIncludes.userModals.donationModal.userDonations')
+
+@include('includes.userIncludes.userModals.cancelPendingCharityModal.userCancelsPendingCharity')
+
+@include('includes.userIncludes.userModals.viewDonationsModal.userViewDonations')
