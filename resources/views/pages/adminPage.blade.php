@@ -28,13 +28,13 @@
     @include('includes.adminIncludes.adminSideMenuToggle')
 
     <div class="flex-1 p-4 h-screen overflow-auto ">
-        <div x-show="adminSectionActive === 'charities'">
+        <div x-show="adminSectionActive === 'charities'" class="h-full">
             @include('includes.adminIncludes.adminSections.adminCharities')
         </div>
-        <div x-show="adminSectionActive === 'requests'">
+        <div x-show="adminSectionActive === 'requests'" class="h-full">
             @include('includes.adminIncludes.adminSections.adminRequests')
         </div>
-        <div x-show="adminSectionActive === 'users'">
+        <div x-show="adminSectionActive === 'users'" class="h-full">
             @include('includes.adminIncludes.adminSections.adminUsers')
         </div>
     </div>

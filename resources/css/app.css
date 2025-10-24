@@ -10,12 +10,13 @@
     color: white;
     --dark-color: #191a20;
     --light-dark-color: #272934;
-    --light: #505366;
+    --light: #3b3d4c;
     --primary-purple: #a1a2ed;
     --secondary-purple: #474a95;
     --tertiary-purple: #7274bf;
     --pink: #d190d8;
     --red-color: #ff5757;
+    --green-color: #40e348d1;
 
     font-family: 'Poppins', sans-serif;
     background-color: var(--dark-color);
@@ -65,12 +66,17 @@
     background-color: var(--light-dark-color);
 }
 
+
+.hover\:bg-light-dark:hover {
+    background-color: #20212a;
+}
+
 .bg-light{
     background-color: var(--light);
 }
 
 .hover\:bg-light:hover {
-    background-color: #444657;
+    background-color: #313340;
 }
 
 .bg-dark{
@@ -126,11 +132,24 @@
     border-radius: 0.5rem;
     cursor: pointer;
     padding: 0.5rem;
-    font-size: 0.875rem;
+
 }
 
 .btn-red-color:hover{
     background-color: #e64545;
+}
+
+.btn-green-color{
+    background-color: var(--green-color);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+   
+}
+
+.btn-green-color:hover{
+    background-color: #42c949d1;
 }
 
 .btn-logout{
