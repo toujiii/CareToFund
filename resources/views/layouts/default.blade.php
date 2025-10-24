@@ -6,6 +6,8 @@
 <body >
 
 @yield('userContent')
-    
+
+@yield('adminContent')
+
 </body>
 </html>
