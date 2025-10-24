@@ -41,7 +41,7 @@
                             </p>
                         </div>
                     </div>
-                    <div title="More" class=" flex items-center gap-2 bg-light-dark p-2 rounded-full hover:bg-light-dark cursor-pointer  ">
+                    <div x-on:click="isViewMoreDetailsModalOpen = true" title="More" class=" flex items-center gap-2 bg-light-dark p-2 rounded-full hover:bg-light-dark cursor-pointer  ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
                             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
                         </svg>
@@ -83,10 +83,10 @@
                     </p>
                 </div>
                 <div class=" flex items-center justify-end pt-4 border-t border-gray-500 gap-2 ">
-                    <button class="btn-red-color text-xs md:text-sm w-20">
+                    <button x-on:click="isRejectRequestModalOpen = true" class="btn-red-color text-xs md:text-sm w-20">
                         Reject
                     </button>
-                    <button class="btn-green-color text-xs md:text-sm">
+                    <button x-on:click="isApproveRequestModalOpen = true" class="btn-green-color text-xs md:text-sm">
                         Approve
                     </button>
                 </div>
@@ -94,3 +94,12 @@
         @endfor
     </div>
 </div>
+
+<!-- Modal Section -->
+
+@include('includes.adminIncludes.adminModals.rejectRequestModal.adminRejectRequest')
+
+@include('includes.adminIncludes.adminModals.approveRequestModal.adminApproveRequest')
+
+@include('includes.adminIncludes.adminModals.viewMoreDetailsModal.adminViewMoreDetails')
+

@@ -7,7 +7,13 @@
         openSideMenu: true, 
         adminScreenWidth: window.innerWidth, 
         adminMobile: false, 
-        adminSectionActive: 'charities'
+        adminSectionActive: 'requests',
+        isCancelCharityModalOpen: false,
+        isRejectRequestModalOpen: false,
+        isApproveRequestModalOpen: false,
+        isViewDonationsModalOpen: false,
+        isViewMoreDetailsModalOpen: false,
+        viewMoreDetailsTab: 'idAndImages'
     }"  
     x-init="
         adminScreenWidth = window.innerWidth;
@@ -41,3 +47,4 @@
 </div>
 
 @endsection
+

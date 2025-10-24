@@ -31,7 +31,7 @@
             </p>
         </div>
     </div>
-    <button x-on:click="isCancelPendingCharityModalOpen = true" class="btn-red-color w-full mt-4 p-2  ">
+    <button x-on:click="isCancelPendingCharityModalOpen = true" class="btn-red-color w-full mt-4 p-2 text-sm">
         Cancel Charity
     </button>
 
