@@ -2,19 +2,20 @@
 
 @section('adminContent')
 
-<div 
+<div
     x-data="{ 
         openSideMenu: true, 
         adminScreenWidth: window.innerWidth, 
         adminMobile: false, 
-        adminSectionActive: 'requests',
+        adminSectionActive: 'charities',
         isCancelCharityModalOpen: false,
         isRejectRequestModalOpen: false,
         isApproveRequestModalOpen: false,
         isViewDonationsModalOpen: false,
         isViewMoreDetailsModalOpen: false,
-        viewMoreDetailsTab: 'idAndImages'
-    }"  
+        viewMoreDetailsTab: 'idAndImages',
+
+    }"
     x-init="
         adminScreenWidth = window.innerWidth;
         openSideMenu = adminScreenWidth > 1000 ? true : false;
@@ -25,26 +26,29 @@
     });"
 
     class="flex h-screen"
-    @resize.window="adminScreenWidth = window.innerWidth"
-
-    >
+    @resize.window="adminScreenWidth = window.innerWidth">
 
     @include('includes.adminIncludes.adminSideMenu')
 
     @include('includes.adminIncludes.adminSideMenuToggle')
 
     <div class="flex-1 p-4 h-screen overflow-auto ">
-        <div x-show="adminSectionActive === 'charities'" class="h-full">
-            @include('includes.adminIncludes.adminSections.adminCharities')
-        </div>
-        <div x-show="adminSectionActive === 'requests'" class="h-full">
-            @include('includes.adminIncludes.adminSections.adminRequests')
-        </div>
-        <div x-show="adminSectionActive === 'users'" class="h-full">
-            @include('includes.adminIncludes.adminSections.adminUsers')
-        </div>
+        <template x-if="adminSectionActive === 'charities'">
+            <div class="h-full">
+                @include('includes.adminIncludes.adminSections.adminCharities')
+            </div>
+        </template>
+        <template x-if="adminSectionActive === 'requests'">
+            <div class="h-full">
+                @include('includes.adminIncludes.adminSections.adminRequests')
+            </div>
+        </template>
+        <template x-if="adminSectionActive === 'users'">
+            <div class="h-full">
+                @include('includes.adminIncludes.adminSections.adminUsers')
+            </div>
+        </template>
     </div>
 </div>
 
 @endsection
-

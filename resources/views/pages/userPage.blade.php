@@ -10,9 +10,9 @@
         activeTab: 'signin', 
         screenWidth: window.innerWidth, 
         isSettingsModalOpen: false, 
-        activeTabSettings: 'editProfile', 
+        activeTabSettings: '', 
         isCharityDonationModalOpen: false,
-        activeTabCharityDonations: 'charity',
+        activeTabCharityDonations: '',
         isCreateNewCharityModalOpen: false,
         newCharityStep: 1,
         isCreateNewCharityConfirmationModalOpen: false,
@@ -24,7 +24,8 @@
         sideFacePreview: null,
         idImagePreview: null,
         newCharityFrontPreview: null,
-        newCharitySidePreview: null
+        newCharitySidePreview: null,
+        successModal: false,
     }"
     x-init="
         screenWidth = window.innerWidth;
@@ -57,8 +58,8 @@
 
                     @include('includes.userIncludes.charityPostCard')
 
-                    @endfor
-                    </div>
+                @endfor
+                  
             </div>
         </div>
     </div>

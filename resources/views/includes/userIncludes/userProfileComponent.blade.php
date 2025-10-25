@@ -1,4 +1,4 @@
-<div  class="h-full w-full flex flex-col gap-4 ">
+<div  class="h-full w-full flex flex-col gap-4 " >
     <div :class="{ 'hidden': !mobile,}" class="flex items-center justify-between mb-4 ">
         <p class="text-3xl font-bold ">
             CareToFund
@@ -26,6 +26,8 @@
 
     <!-- @include('includes.userIncludes.currentCharity.currentNewCharity') -->
 
+    <!-- @include('includes.userIncludes.currentCharity.userNotif') -->
+
     <button class="btn-logout w-full mt-auto p-2 mb-4 flex items-center justify-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
@@ -44,8 +46,10 @@
 
 @include('includes.userIncludes.userModals.createNewCharityModal.newCharityConfirmation')
 
-@include('includes.userIncludes.userModals.donationModal.userDonations')
+@include('includes.userIncludes.userModals.donationModal.userDonations', ['charityName' => 'John Doe'])
 
 @include('includes.userIncludes.userModals.cancelPendingCharityModal.userCancelsPendingCharity')
 
 @include('includes.userIncludes.userModals.viewDonationsModal.userViewDonations')
+
+@include('includes.userIncludes.userModals.profileSettingsModal.profileSettingSuccess')
