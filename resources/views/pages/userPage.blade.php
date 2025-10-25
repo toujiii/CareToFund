@@ -38,9 +38,11 @@
     class="relative w-full h-screen  flex ">
     <div :class="{'block': open , 'hidden': !open , 'absolute z-10 w-full': mobile }" class="sideContent  w-110 h-screen shadow-md p-4 flex flex-col  justify-center">
 
-        <!-- @include('includes.userIncludes.userLoginComponent') -->
-
-        @include('includes.userIncludes.userProfileComponent')
+        @if(Auth::check())
+            @include('includes.userIncludes.userProfileComponent')
+        @else
+            @include('includes.userIncludes.userLoginComponent')
+        @endif
 
         <p class="text-xs text-center mt-auto">
             © {{ date('Y') }} CareToFund. All rights reserved.

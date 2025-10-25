@@ -4,14 +4,14 @@
         Your kindness keeps the mission alive. Let’s make today count for someone in need.
     </p>
 </div>
-<form action="" class="mt-8 flex flex-col w-full">
+<form action="{{ route('login') }}" method="POST" class="mt-8 flex flex-col w-full">
     @csrf
     <p class="text-sm mb-4">
         Enter your following details bellow to continue on funding:
     </p>
-    <input type="email" placeholder="Email" class="mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
-    <input type="password" placeholder="Password" class="mb-8 px-3 py-2 rounded-md text-black text-sm bg-white" required>
-    <button class="btn-pink ">
+    <input type="email" name="email" placeholder="Email" class="mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
+    <input type="password" name="password" placeholder="Password" class="mb-8 px-3 py-2 rounded-md text-black text-sm bg-white" required>
+    <button class="btn-pink " type="submit">
         Continue
     </button>
 
