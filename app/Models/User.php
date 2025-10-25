@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gcash_number',
+        'status',
+        // 'role',           // enable only if clients may set role
     ];
 
     /**
@@ -31,6 +34,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'user_front_link',
+        'user_side_link',
     ];
 
     /**

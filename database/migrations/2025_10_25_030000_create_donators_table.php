@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('donators', function (Blueprint $table) {
+            $table->increments('donator_id');
+
+            // define FK columns before indexes/constraints
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('charity_id');
+
+            $table->integer('amount');
+            $table->enum('payment_method', ['credit_card', 'gcash', 'bank_transfer']);
+            $table->timestamps();
+
+            // indexes and FKs
+            $table->index('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->index('charity_id');
+            $table->foreign('charity_id')
+                ->references('charity_id')
+                ->on('charities')
+                ->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('donators');
+    }
+};

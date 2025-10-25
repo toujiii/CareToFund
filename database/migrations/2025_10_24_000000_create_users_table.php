@@ -3,21 +3,24 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->increments('id');
+            $table->string('name', 50);
+            $table->string('email', 50);
+            $table->string('password', 255);
+            $table->string('gcash_number', 11);
+            $table->enum('status', ['Active', 'Offline', 'Pending']);
+            $table->string('role', 11)->nullable();
+            $table->text('user_front_link')->nullable();
+            $table->text('user_side_link')->nullable();
             $table->timestamps();
         });
 
