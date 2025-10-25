@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->string('name', 50);
             $table->string('email', 50);
             $table->string('password', 255);
-            $table->string('gcash_number', 11);
-            $table->enum('status', ['Active', 'Offline', 'Pending']);
+            $table->string('gcash_number', 11)->nullable();
+            $table->enum('status', ['Active', 'Offline', 'Pending'])->default('Active');
             $table->string('role', 11)->nullable();
             $table->text('user_front_link')->nullable();
             $table->text('user_side_link')->nullable();
