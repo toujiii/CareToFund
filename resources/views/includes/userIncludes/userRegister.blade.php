@@ -20,7 +20,7 @@
 </form>
 <div class="text-sm mt-2 w-full text-center">
     Already have an account?
-    <a href="" class="text-pink font-semibold cursor-pointer hover:underline">
+    <button @click="activeTab = 'signin'" class="text-pink font-semibold cursor-pointer hover:underline">
         Sign In!
-    </a>
+    </button>
 </div>

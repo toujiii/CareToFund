@@ -35,7 +35,7 @@
 </button>
 <div class="text-sm mt-2 w-full text-center">
     Don’t have an account yet?
-    <a href="" class="text-pink font-semibold cursor-pointer hover:underline">
+    <button @click="activeTab = 'register'" class="text-pink font-semibold cursor-pointer hover:underline">
         Register Now!
-    </a>
+    </button>
 </div>

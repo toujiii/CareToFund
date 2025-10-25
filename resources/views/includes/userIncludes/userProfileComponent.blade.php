@@ -50,7 +50,7 @@
 
 @include('includes.userIncludes.userModals.createNewCharityModal.newCharityConfirmation')
 
-@include('includes.userIncludes.userModals.donationModal.userDonations', ['charityName' => 'John Doe'])
+@include('includes.userIncludes.userModals.donationModal.userDonations')
 
 @include('includes.userIncludes.userModals.cancelPendingCharityModal.userCancelsPendingCharity')
 

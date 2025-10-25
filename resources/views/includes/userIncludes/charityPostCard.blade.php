@@ -87,7 +87,7 @@
         </div> -->
 
         <!-- if may nakalog in -->
-        <button x-on:click="isDonationModalOpen = true" class=" btn-pink ">
+        <button x-on:click="isDonationModalOpen = true; console.log('Donate button clicked')" class=" btn-pink ">
             <p class="  mx-1">
                 Donate
             </p>
