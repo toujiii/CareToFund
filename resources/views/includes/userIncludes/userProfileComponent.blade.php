@@ -1,4 +1,4 @@
-<div  class="h-full w-full flex flex-col gap-4 ">
+<div  class="h-full w-full flex flex-col gap-4 " >
     <div :class="{ 'hidden': !mobile,}" class="flex items-center justify-between mb-4 ">
         <p class="text-3xl font-bold ">
             CareToFund
@@ -26,6 +26,8 @@
 
     <!-- @include('includes.userIncludes.currentCharity.currentNewCharity') -->
 
+    <!-- @include('includes.userIncludes.currentCharity.userNotif') -->
+
     <form action="{{ route('logout') }}" method="POST" class="w-full mt-auto p-2 mb-4">
         @csrf
         <button type="submit" class="btn-logout w-full flex items-center justify-center gap-2">
@@ -36,6 +38,7 @@
             Logout
         </button>
     </form>
+
 </div>
 
 <!-- Modal Section -->
@@ -47,8 +50,10 @@
 
 @include('includes.userIncludes.userModals.createNewCharityModal.newCharityConfirmation')
 
-@include('includes.userIncludes.userModals.donationModal.userDonations')
+@include('includes.userIncludes.userModals.donationModal.userDonations', ['charityName' => 'John Doe'])
 
 @include('includes.userIncludes.userModals.cancelPendingCharityModal.userCancelsPendingCharity')
 
 @include('includes.userIncludes.userModals.viewDonationsModal.userViewDonations')
+
+@include('includes.userIncludes.userModals.profileSettingsModal.profileSettingSuccess')

@@ -22,15 +22,19 @@
                 </p>
             </div>
         </div>
-        <div x-show="activeTabCharityDonations === 'charity'" class="m-4 max-w-md">
+        <template x-if="activeTabCharityDonations === 'charity'">
+            <div class="m-4 max-w-md">
 
-            @include('includes.userIncludes.userModals.charityDonationsModal.charityRecord')
+                @include('includes.userIncludes.userModals.charityDonationsModal.charityRecord')
 
-        </div>
-        <div x-show="activeTabCharityDonations === 'donate'" class="m-4 max-w-md">
+            </div>
+        </template>
+        <template x-if="activeTabCharityDonations === 'donate'">
+            <div class="m-4 max-w-md">
 
-            @include('includes.userIncludes.userModals.charityDonationsModal.donationRecord')
+                @include('includes.userIncludes.userModals.charityDonationsModal.donationRecord')
 
-        </div>
+            </div>
+        </template>
     </div>
 </div>

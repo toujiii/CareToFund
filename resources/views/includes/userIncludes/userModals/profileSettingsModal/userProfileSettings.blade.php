@@ -27,20 +27,26 @@
                 </p>
             </div>
         </div>
-        <div x-show="activeTabSettings === 'editProfile'" class="m-4 max-w-md">
+        <template x-if="activeTabSettings === 'editProfile'" >
+            <div  class="m-4 max-w-md" >
 
-            @include('includes.userIncludes.userModals.profileSettingsModal.profileSettingEditProfile')
+                @include('includes.userIncludes.userModals.profileSettingsModal.profileSettingEditProfile')
 
-        </div>
-        <div x-show="activeTabSettings === 'resetPassword'" class="m-4 max-w-md">
+            </div>
+        </template>
+        <template x-if="activeTabSettings === 'resetPassword'" >
+            <div  class="m-4 max-w-md">
 
-            @include('includes.userIncludes.userModals.profileSettingsModal.profileSettingResetPassword')
+                @include('includes.userIncludes.userModals.profileSettingsModal.profileSettingResetPassword')
 
-        </div>
-        <div x-show="activeTabSettings === 'verifyAccount'" class="m-4 max-w-md ">
+            </div>
+        </template>
+        <template x-if="activeTabSettings === 'verifyAccount'" >
+            <div  class="m-4 max-w-md">
 
-            @include('includes.userIncludes.userModals.profileSettingsModal.profileSettingVerifyAccount')
+                @include('includes.userIncludes.userModals.profileSettingsModal.profileSettingVerifyAccount')
 
-        </div>
+            </div>
+        </template>
     </div>
 </div>
