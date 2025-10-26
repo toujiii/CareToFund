@@ -25,7 +25,7 @@
         idImagePreview: null,
         newCharityFrontPreview: null,
         newCharitySidePreview: null,
-        successModal: false,
+        responseModal: false,
     }"
     x-init="
         screenWidth = window.innerWidth;
@@ -35,13 +35,20 @@
             open = value > 1000 ? true : false; 
             mobile = value > 1000 ? false : true; 
     });"
+
     @resize.window="screenWidth = window.innerWidth"
     @reset-previews.window="frontFacePreview = null; sideFacePreview = null"
-    class="relative w-full h-screen  flex ">
+    @success-modal.window="responseModal = true"
+    
+    class="relative w-full h-screen  flex "
+    
+    >
     <div :class="{'block': open , 'hidden': !open , 'absolute z-10 w-full': mobile }" class="sideContent  w-110 h-screen shadow-md p-4 flex flex-col  justify-center">
 
-        @if(Auth::check())
-            @include('includes.userIncludes.userProfileComponent')
+        @if(auth()->check())
+            <div id="userProfileComponent"  class="h-full">
+                
+            </div>
         @else
             @include('includes.userIncludes.userLoginComponent')
         @endif
@@ -69,6 +76,7 @@
 </div>
 
 <!-- Scripts -->
+
 @vite('resources/js/user-scripts.js')
 
 @endsection

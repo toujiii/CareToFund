@@ -3,7 +3,6 @@
     role="dialog"
     tabindex="-1"
     x-show="isSettingsModalOpen"
-    x-on:click.away="isSettingsModalOpen = false"
     x-transition.enter.opacity.duration.200ms>
     <div class="bg-black/60 z-40 backdrop-blur-xs w-full h-full absolute" x-on:click="isSettingsModalOpen = false; frontFacePreview = null; sideFacePreview = null"></div>
     <div
@@ -50,4 +49,5 @@
         </template>
     </div>
 </div>
+
 

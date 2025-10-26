@@ -19,4 +19,9 @@
             <p class="text-sm font-semibold text-end text-yellow-200 border-t border-white mt-2 pt-2">Donated: PHP 100.00</p>
         </div>
     @endfor
+    <div class="bg-light p-4 rounded-md text-center">
+        <p class="text-sm text-gray-300">
+            No donation records found.
+        </p>
+    </div>
 </div>

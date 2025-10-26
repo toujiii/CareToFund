@@ -1,7 +1,17 @@
-console.log('jQuery version:', $.fn.jquery);
+// console.log('jQuery version:', $.fn.jquery);
 
 $(document).ready(function () {
-    getProfile();
+
+    
+    // getProfile();
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const userProfileComponent = document.getElementById('userProfileComponent');
+    if (userProfileComponent) {
+       getProfile();
+    }
 });
 
 $(document).on('submit', '#updateProfile', function (e) {
@@ -18,6 +28,18 @@ $(document).on('submit', '#updateProfile', function (e) {
             success: function (response) {
                 console.log(response);
                 $('#updateProfileError').empty();
+                
+                
+                setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('success-modal'));
+                    $('#responseModalTitle').text('Profile Updated');
+                    $('#responseModalMessage').text('Your profile has been updated successfully.');
+                }, 50);
+
+                
+                $('#responseModalTitle').text('Profile Updated');
+                console.log('Updated text:', $('#responseModalTitle').text());
+
                 getProfile();
             },
             error: function (xhr) {
@@ -50,6 +72,11 @@ $(document).on('submit', '#resetPasswordForm', function (e) {
             success: function (response) {
                 // console.log(response);
                 $('#resetPasswordError').empty();
+                setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('success-modal'));
+                    $('#responseModalTitle').text('Password Reset');
+                    $('#responseModalMessage').text('Your password has been reset successfully.');
+                }, 50);
                 getProfile();
             },
             error: function (xhr) {
@@ -115,6 +142,7 @@ $(document).on('submit', '#verifyImagesForm', function (e) {
             window.dispatchEvent(new CustomEvent('reset-previews'));
         },
         error: function (xhr) {
+            console.error(xhr);
         }
     });
 });
@@ -125,11 +153,12 @@ function getProfile() {
         type: 'GET',
         success: function (response) {
             // console.log(response);
-            $('#userProfileInfoSection').empty();
-            $('#userProfileInfoSection').html(response);
+            $('#userProfileComponent').empty();
+            $('#userProfileComponent').html(response);
         },
         error: function (xhr) {
-            console.error(xhr); 
+            // console.error(xhr); 
         }
     });
 }
+

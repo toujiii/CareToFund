@@ -1,7 +1,11 @@
 <div class="bg-primary-purple h-fit w-full rounded-md p-4 flex flex-col gap-4 ">
     <div class="flex items-center gap-2 ">
-        <div class="h-14 w-14 bg-gray-200 rounded-full">
-
+        <div class="h-14 w-14 bg-gray-200 rounded-full overflow-hidden ">
+            @if ($user->user_front_link != null)
+                <img src="{{ asset($user->user_front_link) }}" alt="" class="w-full h-full object-cover rounded-full">
+            @else 
+                <img src="{{ asset('images/defaultProfile.svg') }}" alt="" class="w-full mt-2 h-full object-cover rounded-full">
+            @endif
         </div>
         <div class=" flex flex-col items-start ">
             <div class="flex items-center gap-2">
@@ -37,4 +41,4 @@
     </div>
 </div>
 
-@include('includes.userIncludes.userModals.profileSettingsModal.userProfileSettings', ['user' => $user])
+@include('includes.userIncludes.userModals.profileSettingsModal.userProfileSettings')

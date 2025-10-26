@@ -17,7 +17,7 @@ class ProfileController extends Controller
         $userID = $request->user()->id;
         $user = User::find($userID);
 
-        return view('includes.userIncludes.userProfileInfo', ['user' => $user]);
+        return view('includes.userIncludes.userProfileComponent', ['user' => $user]);
     }
 
     public function updateInfo(Request $request)
