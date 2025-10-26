@@ -9,5 +9,6 @@
 
 @yield('adminContent')
 
+
 </body>
 </html>

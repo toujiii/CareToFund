@@ -10,7 +10,9 @@
         </button>
     </div>
     
-    @include('includes.userIncludes.userProfileInfo')
+    <div id ="userProfileInfoSection" class=" w-full  ">
+        
+    </div>
 
     @include('includes.userIncludes.userCharityDonationsCount')
     
@@ -42,7 +44,7 @@
 </div>
 
 <!-- Modal Section -->
-@include('includes.userIncludes.userModals.profileSettingsModal.userProfileSettings')
+
 
 @include('includes.userIncludes.userModals.charityDonationsModal.userCharityDonations')
 

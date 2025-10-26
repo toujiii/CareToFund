@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('charity_requests', function (Blueprint $table) {
             $table->increments('request_id');
+            $table->string('title', 255);
             $table->text('description');
             $table->dateTime('datetime');
             $table->dateTime('approved_datetime')->nullable();
             $table->integer('fund_limit');
             $table->integer('duration');
-            $table->enum('id_type_used', ['Passport', "Drivers License", 'National ID']);
+            $table->enum('id_type_used', ['Passport', "Driver\'s License", 'National ID']);
             $table->string('id_number', 50);
             $table->string('id_att_link', 255);
             $table->string('front_face_link', 255);

@@ -18,13 +18,15 @@
     Invalid input. Please check the fields and try again.
 </p> -->
 
-<form class="flex flex-col ">
+<form id="updateProfile" action="{{ route('update-profile') }}" class="flex flex-col ">
+    @csrf
+    @method('PUT')
+    <span id="updateProfileError" class="text-red-500 text-sm mb-4"></span>
     <label class="mb-2 font-semibold text-sm">Username</label>
-    <input type="text" placeholder="Username" value="John Doe" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" >
+    <input type="text" name="name" placeholder="Username" value="{{ $user->name }}" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" >
     <label class="mb-2 font-semibold text-sm">Email</label>
-    <input type="email" placeholder="Email" value="john@example.com" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" >
-    <button class="btn-tertiary-purple mt-12">
+    <input type="email" name="email" placeholder="Email" value="{{ $user->email }}" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" >
+    <button type="submit" class="btn-tertiary-purple mt-12">
         Save Changes
     </button>
 </form>
-

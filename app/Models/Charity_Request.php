@@ -14,6 +14,7 @@ class Charity_Request extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'title',
         'description',
         'datetime',
         'approved_datetime',

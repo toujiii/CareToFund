@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('role', 11)->nullable();
             $table->text('user_front_link')->nullable();
             $table->text('user_side_link')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 

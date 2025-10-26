@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->unsignedInteger('charity_id');
 
             $table->integer('amount');
-            $table->enum('payment_method', ['credit_card', 'gcash', 'bank_transfer']);
             $table->timestamps();
+            $table->boolean('is_anonymous')->default(false);
 
             // indexes and FKs
             $table->index('user_id');

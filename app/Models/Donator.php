@@ -15,7 +15,7 @@ class Donator extends Model
 
     protected $fillable = [
         'amount',
-        'payment_method',
+        'is_anonymous',
     ];
 
     protected $hidden = [

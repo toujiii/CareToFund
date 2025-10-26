@@ -1,6 +1,7 @@
 import './bootstrap';
 
 
+
 // sample lang
 // $(document).ready(function () {
 //     $('#editProfileForm').on('submit', function (e) {
@@ -26,3 +27,4 @@ import './bootstrap';
 //         });
 //     });
 // });
+

@@ -36,6 +36,7 @@
             mobile = value > 1000 ? false : true; 
     });"
     @resize.window="screenWidth = window.innerWidth"
+    @reset-previews.window="frontFacePreview = null; sideFacePreview = null"
     class="relative w-full h-screen  flex ">
     <div :class="{'block': open , 'hidden': !open , 'absolute z-10 w-full': mobile }" class="sideContent  w-110 h-screen shadow-md p-4 flex flex-col  justify-center">
 
@@ -66,5 +67,8 @@
         </div>
     </div>
 </div>
+
+<!-- Scripts -->
+@vite('resources/js/user-scripts.js')
 
 @endsection

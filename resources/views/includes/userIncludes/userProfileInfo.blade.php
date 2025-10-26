@@ -6,17 +6,20 @@
         <div class=" flex flex-col items-start ">
             <div class="flex items-center gap-2">
                 <p class="font-bold text-base ">
-                    John Doe
+                   {{ $user->name }}
                 </p>
-                <div class="text-xs bg-yellow-400  rounded-lg px-2">
-                    Unverified
-                </div>
-                <!-- <div class="text-xs bg-green-500 text-white rounded-lg px-2">
+                @if ($user->gcash_number === null || $user->user_front_link === null || $user->user_side_link === null)
+                    <div class="text-xs bg-yellow-400  rounded-lg px-2">
+                        Unverified
+                    </div>
+                @else 
+                    <div class="text-xs bg-green-500 text-white rounded-lg px-2">
                         Verified
-                    </div> -->
+                    </div>
+                @endif
             </div>
             <p class="text-xs text-gray-200 mb-2">
-                john.doe@example.com
+                {{ $user->email }}
             </p>
         </div>
 
@@ -33,3 +36,5 @@
         </button>
     </div>
 </div>
+
+@include('includes.userIncludes.userModals.profileSettingsModal.userProfileSettings', ['user' => $user])

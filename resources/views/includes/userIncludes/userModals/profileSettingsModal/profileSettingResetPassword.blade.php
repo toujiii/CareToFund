@@ -18,13 +18,16 @@
     Invalid input. Please check the fields and try again.
 </p> -->
 
-<form class="flex flex-col ">
+<form id="resetPasswordForm" action="{{ route('reset-password') }}"  class="flex flex-col ">
+    @csrf
+    @method('PUT')
+    <span id="resetPasswordError" class="text-red-500 text-sm mb-4"></span>
     <label class="mb-2 font-semibold text-sm">Current Password</label>
-    <input type="password"  class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
+    <input type="password" name="current_password" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
     <label class="mb-2 font-semibold text-sm">New Password</label>
-    <input type="password"  class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
+    <input type="password" name="new_password" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
     <label class="mb-2 font-semibold text-sm">Confirm Password</label>
-    <input type="passowrd" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
+    <input type="password" name="new_password_confirmation" class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white" required>
     <button class="btn-tertiary-purple mt-12">
         Reset Password
     </button>
