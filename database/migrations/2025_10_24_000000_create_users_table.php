@@ -14,11 +14,21 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->string('email', 50);
+            $table->string('email', 50)->unique();
             $table->string('password', 255);
             $table->string('gcash_number', 11)->nullable();
             $table->enum('status', ['Active', 'Offline', 'Pending'])->default('Active');
             $table->string('role', 11)->nullable();
+
+            // Pang gmail/facebook login
+            $table->rememberToken()->nullable();
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->string('avatar')->nullable();
+
+            // email verification
+            $table->timestamp('email_verified_at')->nullable();
+
             $table->text('user_front_link')->nullable();
             $table->text('user_side_link')->nullable();
             $table->softDeletes();

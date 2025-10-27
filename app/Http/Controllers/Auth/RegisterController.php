@@ -25,7 +25,7 @@ class RegisterController extends Controller
             'status' => 'Offline',
         ]);
 
-        Auth::login($user);
+        // Auth::login($user);
 
         return redirect('/');
     }

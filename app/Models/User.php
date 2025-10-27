@@ -27,7 +27,10 @@ class User extends Authenticatable
         'password',
         'gcash_number',
         'status',
-        // 'role',           // enable only if clients may set role
+        // 'role',
+        'provider',
+        'provider_id',
+        'avatar',
     ];
 
     /**
@@ -45,19 +48,14 @@ class User extends Authenticatable
     /**
      * Get the attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string,string>
      */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 
     public const STATUS_PENDING = 'Pending';
     public const STATUS_ACTIVE = 'Active';
     public const STATUS_OFFLINE = 'Offline';
-
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 }

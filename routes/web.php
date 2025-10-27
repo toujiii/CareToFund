@@ -4,11 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\SocialAuthController;
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])
+    ->name('social.redirect')
+    ->where('provider', 'google|facebook');
+
+Route::get('auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])
+    ->name('social.callback')
+    ->where('provider', 'google|facebook');
 
 Route::get('/', function () {
     return view('pages.userPage');
