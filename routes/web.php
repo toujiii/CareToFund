@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CharityRequestController;
 use App\Http\Controllers\Auth\SocialAuthController;
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/verify-gcash', [ProfileController::class, 'verifyGcash'])->name('verify-gcash');
     Route::post('/verify-images', [ProfileController::class, 'verifyImages'])->name('verify-images');
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+    Route::post('/create-charity', [CharityRequestController::class, 'store'])->name('user-create-new-charity');
 });
 
 

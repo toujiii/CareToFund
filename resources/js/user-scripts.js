@@ -147,6 +147,34 @@ $(document).on('submit', '#verifyImagesForm', function (e) {
     });
 });
 
+$(document).on('submit', '#newCharityForm', function (e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+    $.ajax({
+        url: $(this).attr('action'),
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            // console.log(response);
+            setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('success-modal'));
+                    $('#responseModalTitle').text('Charity Created');
+                    $('#responseModalMessage').text('Your charity has been created successfully.');
+                }, 50);
+            getProfile();
+            console.log('Charity created successfully.');
+        },
+        error: function (xhr) {
+            console.error(xhr);
+            console.log('Failed to create charity.');
+        }
+    });
+});
+
+
 function getProfile() {
     $.ajax({
         url: '/profile',

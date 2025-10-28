@@ -5,16 +5,16 @@
     <div class="flex flex-col flex-1 gap-4">
         <div class=" flex flex-col gap-2 h-fit">
             <label class="font-semibold text-sm">ID Type</label>
-            <select class="w-full px-3 py-2 rounded-md text-black text-sm bg-white" required>
+            <select name="id_type_used" class="w-full px-3 py-2 rounded-md text-black text-sm bg-white" >
                 <option hidden>Select Your ID</option>
-                <option>National ID</option>
-                <option>Driver's License</option>
-                <option>Passport</option>
+                <option value="National ID">National ID</option>
+                <option value="Driver's License">Driver's License</option>
+                <option value="Passport">Passport</option>
             </select>
         </div>
         <div class="flex flex-col gap-2 h-fit">
             <label class=" font-semibold text-sm">ID Number/Code</label>
-            <input type="text" class="w-full px-3 py-2 rounded-md text-black text-sm bg-white" required>
+            <input name="id_number" type="text" class="w-full px-3 py-2 rounded-md text-black text-sm bg-white" >
         </div>
     </div>
 
@@ -35,7 +35,7 @@
                 </p>
                 <p class="text-gray-500 text-xs select-none">Upload ID Image</p>
             </div>
-            <input id="idImage" type="file" hidden @change="let file = $event.target.files[0]; idImagePreview = URL.createObjectURL(file)" required>
+            <input id="idImage" type="file" name="id_image" hidden @change="let file = $event.target.files[0]; idImagePreview = URL.createObjectURL(file)" >
         </label>
     </div>
 </div>
@@ -53,7 +53,7 @@
             </p>
             <p class="text-gray-500 text-xs select-none">Upload Front Face</p>
         </div>
-        <input id="newCharityFrontFace" type="file" hidden @change="let file = $event.target.files[0]; newCharityFrontPreview = URL.createObjectURL(file)" required>
+        <input id="newCharityFrontFace" type="file" name="new_charity_front_face" hidden @change="let file = $event.target.files[0]; newCharityFrontPreview = URL.createObjectURL(file)" >
     </label>
     <label for="newCharitySideFace" class="flex-1 bg-gray-200 min-h-90 h-90 rounded-lg flex flex-col items-center justify-center hover:bg-gray-300 cursor-pointer relative">
         <template x-if="newCharitySidePreview">
@@ -68,15 +68,15 @@
             </p>
             <p class="text-gray-500 text-xs select-none">Upload Side Face</p>
         </div>
-        <input id="newCharitySideFace" type="file" hidden @change="let file = $event.target.files[0]; newCharitySidePreview = URL.createObjectURL(file)" required>
+        <input id="newCharitySideFace" type="file" name="new_charity_side_face" hidden @change="let file = $event.target.files[0]; newCharitySidePreview = URL.createObjectURL(file)" >
     </label>
 </div>
 
-<div class="flex justify-between gap-4 mt-4">
-    <button x-on:click="newCharityStep = 1" class="btn-tertiary-purple   text-sm w-24">
+<div class="flex justify-between gap-4 pt-4 border-t ">
+    <button type="button" x-on:click="newCharityStep = 1" class="btn-tertiary-purple   text-sm w-24">
         Back
     </button>
-    <button x-on:click="isCreateNewCharityConfirmationModalOpen = true;" class="btn-pink text-sm w-24">
+    <button type="button" x-on:click="isCreateNewCharityConfirmationModalOpen = true;" class="btn-pink text-sm w-24">
         Submit
     </button>
 </div>

@@ -13,7 +13,7 @@
     @csrf
     <span id="verifyGcashError" class="text-red-500 text-sm mb-4"></span>
     <div class="mb-2 flex items-center gap-2">
-        <label class="font-semibold text-sm">GCash Number</label>
+        <label class="font-semibold text-sm">1. GCash Number</label>
         @if ($user->gcash_number != null)
         <p class="flex items-center text-sm text-green-500 gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -48,7 +48,7 @@
 <form id="verifyImagesForm" action="{{ route('verify-images') }}" class=" flex flex-col" :class="{ 'h-full': mobile }">
     @csrf
     <div class="mb-3 flex items-center gap-2">
-        <label class=" font-semibold text-sm">User Images</label>
+        <label class=" font-semibold text-sm">2. User Images</label>
 
         @if ($user->user_front_link != null && $user->user_side_link != null)
             <p class="flex items-center text-sm text-green-500 gap-1">

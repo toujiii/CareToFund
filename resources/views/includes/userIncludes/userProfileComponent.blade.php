@@ -34,17 +34,24 @@
         </div>
     @else 
 
-        @include('includes.userIncludes.currentCharity.createNewCharityBtn')
+        @if($user->status === 'Offline')
 
-        <!-- @include('includes.userIncludes.currentCharity.pendingNewCharity') -->
+            @include('includes.userIncludes.currentCharity.createNewCharityBtn')
 
-        <!-- @include('includes.userIncludes.currentCharity.currentNewCharity') -->
+        @elseif($user->status === 'Pending')
 
-        <!-- @include('includes.userIncludes.currentCharity.userNotif') -->
+            @include('includes.userIncludes.currentCharity.pendingNewCharity')
+
+        @elseif($user->status === 'Active')
+
+            @include('includes.userIncludes.currentCharity.currentNewCharity')
+        <!-- @elseif($user->status === 'Notified')
+            @include('includes.userIncludes.currentCharity.userNotif') -->
+        @endif
 
     @endif
 
-    <form action="{{ route('logout') }}" method="POST" class="w-full mt-auto p-2 mb-4">
+    <form action="{{ route('logout') }}" method="POST" class="w-full mt-auto mb-4">
         @csrf
         <button type="submit" class="btn-logout w-full flex items-center justify-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
@@ -64,7 +71,7 @@
 
 @include('includes.userIncludes.userModals.createNewCharityModal.userCreateNewCharity')
 
-@include('includes.userIncludes.userModals.createNewCharityModal.newCharityConfirmation')
+
 
 @include('includes.userIncludes.userModals.donationModal.userDonations')
 

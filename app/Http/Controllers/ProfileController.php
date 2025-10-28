@@ -25,12 +25,13 @@ class ProfileController extends Controller
         $user = $request->user();
 
         try {
+            DB::beginTransaction();
+
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             ]);
 
-            DB::beginTransaction();
 
             $user->name = $request->input('name');
             $user->email = $request->input('email');
@@ -60,6 +61,8 @@ class ProfileController extends Controller
         $userPassword = User::find($user->id)->password;
 
         try {
+            DB::beginTransaction();
+
             $request->validate([
                 'current_password' => 'required|string|min:8',
                 'new_password' => 'required|string|min:8|confirmed',
@@ -72,7 +75,6 @@ class ProfileController extends Controller
                 return response()->json(['message' => 'Current password is incorrect.'], 403);
             } 
 
-            DB::beginTransaction();
 
             $user->password = Hash::make($request->input('new_password'));
             $user->save();
@@ -101,11 +103,12 @@ class ProfileController extends Controller
         $user = $request->user();
 
         try {
+            DB::beginTransaction();
+
             $request->validate([
                 'gcash_number' => 'required|numeric|min:11',
             ]);
 
-            DB::beginTransaction();
 
             $user->gcash_number = $request->input('gcash_number');
             $user->save();
@@ -134,6 +137,7 @@ class ProfileController extends Controller
         $user = $request->user();
 
         try {
+            DB::beginTransaction();
 
             $request->validate([
                 'front_face' => 'required|image|mimes:jpeg,png,jpg',
@@ -143,7 +147,6 @@ class ProfileController extends Controller
             $folderName = 'user_' . $user->id . '/verification_images';
             $folderPath = 'uploads/' . $folderName;
             
-            DB::beginTransaction();
            
             if ($request->hasFile('front_face')) {
                 $frontFaceFile = $request->file('front_face');
@@ -175,4 +178,6 @@ class ProfileController extends Controller
 
         }
     }
+
+    
 }

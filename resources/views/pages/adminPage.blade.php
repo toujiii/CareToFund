@@ -14,7 +14,9 @@
         isViewDonationsModalOpen: false,
         isViewMoreDetailsModalOpen: false,
         viewMoreDetailsTab: 'idAndImages',
-
+        isEditUsersModalOpen: false,
+        isDeleteUserModalOpen: false,
+        isArchiveUserModalOpen: false
     }"
     x-init="
         adminScreenWidth = window.innerWidth;

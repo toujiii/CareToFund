@@ -21,9 +21,9 @@ return new class extends Migration
             $table->integer('duration');
             $table->enum('id_type_used', ['Passport', "Driver\'s License", 'National ID']);
             $table->string('id_number', 50);
-            $table->string('id_att_link', 255);
-            $table->string('front_face_link', 255);
-            $table->string('side_face_link', 255);
+            $table->text('id_att_link');
+            $table->text('front_face_link');
+            $table->text('side_face_link');
             $table->enum('request_status', ['Pending', 'Approved', 'Rejected']);
             $table->unsignedInteger('user_id');
 
