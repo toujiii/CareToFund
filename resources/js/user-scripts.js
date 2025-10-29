@@ -4,8 +4,21 @@ $(document).ready(function () {
 
     
     // getProfile();
+    // getUserCharityRequests();
 
 });
+
+
+const observer = new MutationObserver((mutationsList, observer) => {
+    const pendingCharityRequestsContainer = document.getElementById('pendingCharityRequestsContainer');
+    if (pendingCharityRequestsContainer) {
+        getUserCharityRequests();
+        observer.disconnect(); 
+    }
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const userProfileComponent = document.getElementById('userProfileComponent');
@@ -13,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
        getProfile();
     }
 });
+
 
 $(document).on('submit', '#updateProfile', function (e) {
     e.preventDefault();
@@ -190,3 +204,42 @@ function getProfile() {
     });
 }
 
+
+function getUserCharityRequests() {
+    $.ajax({
+        url: '/get-user-charity-requests',
+        type: 'GET',
+        success: function (response) {
+            // console.log(response);
+            $('#pendingCharityRequestsContainer').empty();
+            $('#pendingCharityRequestsContainer').html(response);
+        },
+        error: function (xhr) {
+            console.error(xhr); 
+        }
+    });
+}
+
+function deleteCharityRequest(charityRequestID) {
+    console.log('Delete charity request ID:', charityRequestID);
+    $.ajax({
+        url: '/delete-charity/' + charityRequestID,
+        type: 'DELETE',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            console.log(response);
+            setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('success-modal'));
+                    $('#responseModalTitle').text('Charity Deleted');
+                    $('#responseModalMessage').text('Your charity has been deleted successfully.');
+                }, 50);
+            getProfile();
+        },
+        error: function (xhr) {
+            console.error(xhr);
+        }
+    });
+}
+window.deleteCharityRequest = deleteCharityRequest;

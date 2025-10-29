@@ -26,7 +26,7 @@
             <button type="button" class="bg-light hover:bg-light cursor-pointer rounded-md text-sm w-24" x-on:click="isCreateNewCharityConfirmationModalOpen = false; ">
                 Cancel
             </button>
-            <button type="submit" class="btn-pink text-sm w-24 ml-2" x-on:click=" isCreateNewCharityConfirmationModalOpen = false; isCreateNewCharityModalOpen=false; ">
+            <button type="submit" class="btn-pink text-sm w-24 ml-2" x-on:click=" isCreateNewCharityConfirmationModalOpen = false; isCreateNewCharityModalOpen=false; idImagePreview = null; newCharityFrontPreview = null; newCharitySidePreview = null;">
                 Confirm
             </button>
         </div>

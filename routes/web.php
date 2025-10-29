@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/verify-images', [ProfileController::class, 'verifyImages'])->name('verify-images');
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
     Route::post('/create-charity', [CharityRequestController::class, 'store'])->name('user-create-new-charity');
+    Route::get('/get-user-charity-requests', [CharityRequestController::class, 'show'])->name('get-user-charity-requests');
+    Route::delete('/delete-charity/{charityRequestID}', [CharityRequestController::class, 'cancelCharityRequest'])->name('user-delete-charity');
 });
 
 

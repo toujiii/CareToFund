@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('id_att_link');
             $table->text('front_face_link');
             $table->text('side_face_link');
-            $table->enum('request_status', ['Pending', 'Approved', 'Rejected']);
+            $table->enum('request_status', ['Pending', 'Approved', 'Rejected', 'Cancelled'])->default('Pending');
             $table->unsignedInteger('user_id');
 
             $table->index('user_id', 'user_id_fk');

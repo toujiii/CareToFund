@@ -39,8 +39,10 @@
             @include('includes.userIncludes.currentCharity.createNewCharityBtn')
 
         @elseif($user->status === 'Pending')
-
-            @include('includes.userIncludes.currentCharity.pendingNewCharity')
+            
+            <div id="pendingCharityRequestsContainer">
+               
+            </div>
 
         @elseif($user->status === 'Active')
 
@@ -75,8 +77,9 @@
 
 @include('includes.userIncludes.userModals.donationModal.userDonations')
 
-@include('includes.userIncludes.userModals.cancelPendingCharityModal.userCancelsPendingCharity')
+
 
 @include('includes.userIncludes.userModals.viewDonationsModal.userViewDonations')
 
 @include('includes.userIncludes.userModals.responseModal.responseModal')
+

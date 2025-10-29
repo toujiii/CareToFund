@@ -26,9 +26,14 @@
             <button class="bg-light hover:bg-light cursor-pointer rounded-md text-sm w-24" x-on:click="isCancelPendingCharityModalOpen = false; ">
                 Cancel
             </button>
-            <button class="btn-pink text-sm w-24 ml-2" x-on:click=" isCancelPendingCharityModalOpen = false; ">
+            <button 
+                class="btn-pink text-sm w-24 ml-2" 
+                x-on:click=" isCancelPendingCharityModalOpen = false; "
+                onclick='deleteCharityRequest("{{ $charityRequests->request_id }}")'
+            >
                 Confirm
             </button>
         </div>
     </div>
 </div>
+

@@ -86,8 +86,10 @@ class CharityRequestController extends Controller
             $charity_Request->id_att_link = $idImagePath;
             $charity_Request->front_face_link = $frontFacePath;
             $charity_Request->side_face_link = $sideFacePath;
-            $user->status = 'Pending';
             $charity_Request->save();
+
+            $user->status = 'Pending';
+            $user->save(); 
 
             DB::commit();
 
@@ -115,7 +117,10 @@ class CharityRequestController extends Controller
      */
     public function show(Charity_Request $charity_Request)
     {
-        //
+        $userID = request()->user()->id;
+        $charityRequests = Charity_Request::where('user_id', $userID)->orderBy('datetime', 'desc')->first();
+
+        return view('includes.userIncludes.currentCharity.pendingNewCharity', ['charityRequests' => $charityRequests]);
     }
 
     /**
@@ -137,9 +142,42 @@ class CharityRequestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Charity_Request $charity_Request)
+    public function destroy($charityRequestID, Request $request)
     {
-        //
+        
+    }
+
+    public function cancelCharityRequest($charityRequestID, Request $request)
+    {
+        $user = $request->user();
+
+        try {
+            DB::beginTransaction();
+
+            $charityRequest = Charity_Request::findOrFail($charityRequestID);
+
+            if (!$charityRequest) {
+                return response()->json(['message' => 'Charity request not found.'], 404);
+            }
+
+            $charityRequest->request_status = 'Cancelled';
+            $charityRequest->save();
+
+            $user->status = 'Offline';
+            $user->save();
+
+            DB::commit();
+
+            return response()->json(['message' => 'Charity request deleted successfully.'], 200);
+
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Error deleting charity request: ' . $e->getMessage(), ['exception' => $e]);
+
+            return response()->json(['message' => 'An error occurred while deleting the charity request.'], 500);
+        }
     }
 
 }
