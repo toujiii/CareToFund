@@ -36,6 +36,8 @@
             mobile = value > 1000 ? false : true; 
     });"
 
+    @set-active-tab.window="activeTab = $event.detail"
+
     @resize.window="screenWidth = window.innerWidth"
     @reset-previews.window="frontFacePreview = null; sideFacePreview = null"
     @success-modal.window="responseModal = true"

@@ -17,15 +17,21 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
-        $user = User::create([
+        try{
+            $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'status' => 'Offline',
         ]);
+        }
+        catch(\Exception $e){
+            // return response()->json(['error' => 'Registration failed. Please try again.'], 422);
+            return back()->withErrors(['error' => 'Registration failed. Please try again.']);
+            
+        }
 
-        // Auth::login($user);
+        Auth::login($user);
 
         return redirect('/');
     }
