@@ -23,14 +23,16 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    // Profile Controller Sections
     Route::put('/update-profile', [ProfileController::class, 'updateInfo'])->name('update-profile');
     Route::put('/reset-password', [ProfileController::class, 'resetPassword'])->name('reset-password');
     Route::post('/verify-gcash', [ProfileController::class, 'verifyGcash'])->name('verify-gcash');
     Route::post('/verify-images', [ProfileController::class, 'verifyImages'])->name('verify-images');
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
-    Route::post('/create-charity', [CharityRequestController::class, 'store'])->name('user-create-new-charity');
-    Route::get('/get-user-charity-requests', [CharityRequestController::class, 'show'])->name('get-user-charity-requests');
-    Route::delete('/delete-charity/{charityRequestID}', [CharityRequestController::class, 'cancelCharityRequest'])->name('user-delete-charity');
+
+    // Charity Request Controller Sections
+    Route::resource('charity-requests', CharityRequestController::class)->only('show', 'store');
+    Route::delete('/cancel-charity/{charityRequestID}', [CharityRequestController::class, 'cancelCharityRequest'])->name('user-delete-charity');
 });
 
 
@@ -38,4 +40,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', function () {
         return view('pages.adminPage');
     });
+
+    // Charity Request Controller Sections
+    Route::resource('charity-requests', CharityRequestController::class)->only('index', 'update');
 });

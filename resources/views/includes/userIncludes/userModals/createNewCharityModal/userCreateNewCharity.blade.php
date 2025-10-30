@@ -19,7 +19,7 @@
                 </svg>
             </button>
         </div>
-        <form x-ref="newCharityForm" id="newCharityForm" action="{{ route('user-create-new-charity') }}">
+        <form x-ref="newCharityForm" id="newCharityForm" action="{{ route('charity-requests.store') }}">
             @csrf
             <div 
                 x-show="newCharityStep === 1"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Charity;
 use App\Models\Charity_Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,9 @@ class CharityRequestController extends Controller
      */
     public function index()
     {
-        //
+        $charityRequests = Charity_Request::orderBy('datetime', 'desc')->get();
+
+        return view('includes.adminIncludes.adminSections.adminRequests', ['charityRequests' => $charityRequests]);
     }
 
     /**
@@ -117,8 +120,7 @@ class CharityRequestController extends Controller
      */
     public function show(Charity_Request $charity_Request)
     {
-        $userID = request()->user()->id;
-        $charityRequests = Charity_Request::where('user_id', $userID)->orderBy('datetime', 'desc')->first();
+        $charityRequests = Charity_Request::with('user')->where('user_id', request()->user()->id)->orderBy('datetime', 'desc')->first();
 
         return view('includes.userIncludes.currentCharity.pendingNewCharity', ['charityRequests' => $charityRequests]);
     }

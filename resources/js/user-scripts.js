@@ -16,6 +16,7 @@ const observer = new MutationObserver((mutationsList, observer) => {
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
 document.addEventListener("DOMContentLoaded", function () {
     const userProfileComponent = document.getElementById(
         "userProfileComponent"
@@ -205,7 +206,7 @@ function getProfile() {
 
 function getUserCharityRequests() {
     $.ajax({
-        url: '/get-user-charity-requests',
+        url: '/charity-requests/show',
         type: 'GET',
         success: function (response) {
             // console.log(response);
@@ -219,9 +220,9 @@ function getUserCharityRequests() {
 }
 
 function deleteCharityRequest(charityRequestID) {
-    console.log('Delete charity request ID:', charityRequestID);
+    console.log('Cancel charity request ID:', charityRequestID);
     $.ajax({
-        url: '/delete-charity/' + charityRequestID,
+        url: '/cancel-charity/' + charityRequestID,
         type: 'DELETE',
         data: {
             _token: $('meta[name="csrf-token"]').attr('content')

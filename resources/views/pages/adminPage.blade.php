@@ -7,7 +7,7 @@
         openSideMenu: true, 
         adminScreenWidth: window.innerWidth, 
         adminMobile: false, 
-        adminSectionActive: 'charities',
+        adminSectionActive: 'requests',
         isCancelCharityModalOpen: false,
         isRejectRequestModalOpen: false,
         isApproveRequestModalOpen: false,
@@ -41,8 +41,8 @@
             </div>
         </template>
         <template x-if="adminSectionActive === 'requests'">
-            <div class="h-full">
-                @include('includes.adminIncludes.adminSections.adminRequests')
+            <div class="h-full" id="adminRequestsSectionContainer">
+               
             </div>
         </template>
         <template x-if="adminSectionActive === 'users'">
@@ -52,5 +52,9 @@
         </template>
     </div>
 </div>
+
+<!-- Scripts -->
+
+@vite('resources/js/admin-scripts.js')
 
 @endsection
