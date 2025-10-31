@@ -36,7 +36,7 @@
 
 <!-- Modal Section -->
 
-@include('includes.adminIncludes.adminModals.rejectRequestModal.adminRejectRequest')
+
 
 @include('includes.adminIncludes.adminModals.approveRequestModal.adminApproveRequest')
 

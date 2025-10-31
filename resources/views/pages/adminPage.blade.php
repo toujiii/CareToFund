@@ -9,7 +9,7 @@
         adminMobile: false, 
         adminSectionActive: 'requests',
         isCancelCharityModalOpen: false,
-        isRejectRequestModalOpen: false,
+        isRejectRequestModalOpen: '',
         isApproveRequestModalOpen: false,
         isViewDonationsModalOpen: false,
         isViewMoreDetailsModalOpen: false,
@@ -17,7 +17,8 @@
         isEditUsersModalOpen: false,
         isDeleteUserModalOpen: false,
         isArchiveUserModalOpen: false,
-        charityRequestSortBy: ''
+        charityRequestSortBy: '',
+        responseModal: false,
     }"
     x-init="
         adminScreenWidth = window.innerWidth;
@@ -29,7 +30,10 @@
     });"
 
     class="flex h-screen"
-    @resize.window="adminScreenWidth = window.innerWidth">
+    @resize.window="adminScreenWidth = window.innerWidth"
+    @success-modal.window="responseModal = true"
+    >
+    
 
     @include('includes.adminIncludes.adminSideMenu')
 

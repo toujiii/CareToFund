@@ -68,8 +68,13 @@ function rejectCharityRequest(requestId) {
             _token: $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-            console.log('Charity request rejected successfully:', response);
-            
+            // console.log('Charity request rejected successfully:', response);
+            setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('success-modal'));
+                $('#responseModalTitle').text('Charity Rejected');
+                $('#responseModalMessage').text('This charity has been rejected successfully.');
+            }, 50);
+            loadCharityRequestsSection(sortedBy, '');
         },
         error: function (xhr) {
             console.error('Error rejecting charity request:', xhr);
