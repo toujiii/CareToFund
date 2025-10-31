@@ -16,7 +16,8 @@
         viewMoreDetailsTab: 'idAndImages',
         isEditUsersModalOpen: false,
         isDeleteUserModalOpen: false,
-        isArchiveUserModalOpen: false
+        isArchiveUserModalOpen: false,
+        charityRequestSortBy: ''
     }"
     x-init="
         adminScreenWidth = window.innerWidth;
@@ -35,26 +36,27 @@
     @include('includes.adminIncludes.adminSideMenuToggle')
 
     <div class="flex-1 p-4 h-screen overflow-auto ">
-        <template x-if="adminSectionActive === 'charities'">
-            <div class="h-full">
-                @include('includes.adminIncludes.adminSections.adminCharities')
-            </div>
-        </template>
-        <template x-if="adminSectionActive === 'requests'">
-            <div class="h-full" id="adminRequestsSectionContainer">
-               
-            </div>
-        </template>
-        <template x-if="adminSectionActive === 'users'">
-            <div class="h-full">
-                @include('includes.adminIncludes.adminSections.adminUsers')
-            </div>
-        </template>
+
+        <div x-show="adminSectionActive === 'charities'" class="h-full">
+            @include('includes.adminIncludes.adminSections.adminCharities')
+        </div>
+       
+        <div x-show="adminSectionActive === 'requests'" class="h-full" >
+            
+            @include('includes.adminIncludes.adminSections.adminRequests')
+            
+        </div>
+
+        <div x-show="adminSectionActive === 'users'" class="h-full">
+            @include('includes.adminIncludes.adminSections.adminUsers')
+        </div>
+
     </div>
 </div>
 
 <!-- Scripts -->
 
 @vite('resources/js/admin-scripts.js')
+@vite('resources/js/user-scripts.js')
 
 @endsection

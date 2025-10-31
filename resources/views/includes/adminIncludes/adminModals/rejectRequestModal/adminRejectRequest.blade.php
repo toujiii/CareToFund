@@ -19,7 +19,7 @@
             </button>
         </div>
         <p class="text-base my-4">
-            Are you sure you want to reject this charity?
+            Are you sure you want to reject this charity? 
         </p>
 
         <div class="flex justify-end mt-4">

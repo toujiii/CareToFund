@@ -177,8 +177,9 @@ $(document).on('submit', '#newCharityForm', function (e) {
                     window.dispatchEvent(new CustomEvent('success-modal'));
                     $('#responseModalTitle').text('Charity Created');
                     $('#responseModalMessage').text('Your charity has been created successfully.');
-                }, 50);
+                }, 100);
             getProfile();
+            getUserCharityRequests();
             console.log('Charity created successfully.');
         },
         error: function (xhr) {
@@ -204,26 +205,44 @@ function getProfile() {
     });
 }
 
-function getUserCharityRequests() {
+function getUserCharityRequests(requests_id) {
+
+    if (!requests_id) {
+        requests_id = '';
+    } 
     $.ajax({
         url: '/charity-requests/show',
         type: 'GET',
+        data: {
+            "request_id": requests_id
+        },
         success: function (response) {
             // console.log(response);
-            $('#pendingCharityRequestsContainer').empty();
-            $('#pendingCharityRequestsContainer').html(response);
+            if (requests_id) {
+                // console.log('Loading user charity requests...');
+                // console.log(response);
+                $('#viewMoreDetailsModalContainer').empty();
+                $('#viewMoreDetailsModalContainer').html(response);
+            } else {
+                // console.log('Loading user charity requests...');
+                // console.log(response);
+                $('#pendingCharityRequestsContainer').empty();
+                $('#pendingCharityRequestsContainer').html(response);
+            }
         },
         error: function (xhr) {
             console.error(xhr); 
         }
     });
 }
+window.getUserCharityRequests = getUserCharityRequests;
 
-function deleteCharityRequest(charityRequestID) {
+
+function cancelCharityRequest(charityRequestID) {
     console.log('Cancel charity request ID:', charityRequestID);
     $.ajax({
         url: '/cancel-charity/' + charityRequestID,
-        type: 'DELETE',
+        type: 'POST',
         data: {
             _token: $('meta[name="csrf-token"]').attr('content')
         },
@@ -241,4 +260,4 @@ function deleteCharityRequest(charityRequestID) {
         }
     });
 }
-window.deleteCharityRequest = deleteCharityRequest;
+window.cancelCharityRequest = cancelCharityRequest;

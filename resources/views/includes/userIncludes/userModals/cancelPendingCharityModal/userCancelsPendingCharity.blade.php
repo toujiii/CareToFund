@@ -29,7 +29,7 @@
             <button 
                 class="btn-pink text-sm w-24 ml-2" 
                 x-on:click=" isCancelPendingCharityModalOpen = false; "
-                onclick='deleteCharityRequest("{{ $charityRequests->request_id }}")'
+                onclick='cancelCharityRequest("{{ $charityRequests->request_id }}")'
             >
                 Confirm
             </button>

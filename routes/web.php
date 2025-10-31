@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Charity Request Controller Sections
     Route::resource('charity-requests', CharityRequestController::class)->only('show', 'store');
-    Route::delete('/cancel-charity/{charityRequestID}', [CharityRequestController::class, 'cancelCharityRequest'])->name('user-delete-charity');
+    Route::post('/cancel-charity/{charityRequestID}', [CharityRequestController::class, 'cancelCharityRequest'])->name('user-cancel-charity');
 });
 
 
@@ -43,4 +43,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Charity Request Controller Sections
     Route::resource('charity-requests', CharityRequestController::class)->only('index', 'update');
+    Route::get('charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
+    Route::post('/reject-charity-request/{charityRequestID}', [CharityRequestController::class, 'rejectCharityRequest'])->name('charity-requests.reject');
 });

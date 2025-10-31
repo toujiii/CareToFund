@@ -16,11 +16,25 @@ class CharityRequestController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $charityRequests = Charity_Request::orderBy('datetime', 'desc')->get();
+        $sortBy = $request->sort_by;
+        $searchQuery = $request->search_query;
 
-        return view('includes.adminIncludes.adminSections.adminRequests', ['charityRequests' => $charityRequests]);
+        if ($sortBy) {
+            $charityRequests = Charity_Request::where('request_status', $sortBy)->orderBy('datetime', 'desc')->get();
+        } elseif ($searchQuery) {
+            $charityRequests = Charity_Request::with(['user'])
+                ->where('title', 'like', "%{$searchQuery}%")
+                ->orWhere('description', 'like', "%{$searchQuery}%")
+                ->orderBy('datetime', 'desc')
+                ->get();
+        } else {
+            $charityRequests = Charity_Request::orderBy('datetime', 'desc')->get();
+        }
+
+
+        return view('includes.adminIncludes.adminSections.adminRequestsResults', ['charityRequests' => $charityRequests]);
     }
 
     /**
@@ -118,11 +132,22 @@ class CharityRequestController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Charity_Request $charity_Request)
+    public function show(Request $request)
     {
-        $charityRequests = Charity_Request::with('user')->where('user_id', request()->user()->id)->orderBy('datetime', 'desc')->first();
 
-        return view('includes.userIncludes.currentCharity.pendingNewCharity', ['charityRequests' => $charityRequests]);
+        if ($request->request_id && request()->user()->role === 'admin') {
+            $focusedCharityRequest = Charity_Request::where('request_id', $request->request_id)->first();
+
+            return view('includes.adminIncludes.adminModals.viewMoreDetailsModal.viewMoreDetailsModalContent', ['focusedCharityRequest' => $focusedCharityRequest]);
+
+        } 
+
+        if (request()->user()->role != 'admin') {
+            $charityRequests = Charity_Request::with('user')->where('user_id', request()->user()->id)->orderBy('datetime', 'desc')->first();
+
+            return view('includes.userIncludes.currentCharity.pendingNewCharity', ['charityRequests' => $charityRequests]);
+        }
+
     }
 
     /**
@@ -179,6 +204,38 @@ class CharityRequestController extends Controller
             Log::error('Error deleting charity request: ' . $e->getMessage(), ['exception' => $e]);
 
             return response()->json(['message' => 'An error occurred while deleting the charity request.'], 500);
+        }
+    }
+
+    public function rejectCharityRequest($charityRequestID)
+    {
+        try {
+            DB::beginTransaction();
+
+            $charityRequest = Charity_Request::findOrFail($charityRequestID);
+
+            if (!$charityRequest) {
+                return response()->json(['message' => 'Charity request not found.'], 404);
+            }
+
+            $charityRequest->request_status = 'Rejected';
+            $charityRequest->save();
+
+            $user = $charityRequest->user;
+            $user->status = 'Offline';
+            $user->save();
+
+            DB::commit();
+
+            return response()->json(['message' => 'Charity request rejected successfully.'], 200);
+
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Error rejecting charity request: ' . $e->getMessage(), ['exception' => $e]);
+
+            return response()->json(['message' => 'An error occurred while rejecting the charity request.'], 500);
         }
     }
 
