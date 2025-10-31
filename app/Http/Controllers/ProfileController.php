@@ -75,7 +75,6 @@ class ProfileController extends Controller
                 return response()->json(['message' => 'Current password is incorrect.'], 403);
             } 
 
-
             $user->password = Hash::make($request->input('new_password'));
             $user->save();
 

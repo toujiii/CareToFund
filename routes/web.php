@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CharityRequestController;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -21,6 +23,9 @@ Route::get('auth/{provider}/callback', [SocialAuthController::class, 'handleProv
 Route::get('/', function () {
     return view('pages.userPage');
 });
+Route::resource('users', UserController::class);
+    // ->only('index', 'show');
+Route::resource('admin', AdminController::class);
 
 Route::middleware(['auth'])->group(function () {
     // Profile Controller Sections
