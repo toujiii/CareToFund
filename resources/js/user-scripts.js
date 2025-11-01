@@ -1,13 +1,17 @@
 // console.log('jQuery version:', $.fn.jquery);
+import countdown from 'countdown';
 
 $(document).ready(function () {
     // getProfile();
     // getUserCharityRequests();
+    
 
 });
 
 
-const observer = new MutationObserver((mutationsList, observer) => {
+
+
+const pendingCharityObserver = new MutationObserver((mutationsList, observer) => {
     const pendingCharityRequestsContainer = document.getElementById('pendingCharityRequestsContainer');
     if (pendingCharityRequestsContainer) {
         getUserCharityRequests();
@@ -15,7 +19,28 @@ const observer = new MutationObserver((mutationsList, observer) => {
     }
 });
 
-observer.observe(document.body, { childList: true, subtree: true });
+pendingCharityObserver.observe(document.body, { childList: true, subtree: true });
+
+const userNotifObserver = new MutationObserver((mutationsList, observer) => {
+    const userNotificationsContainer = document.getElementById('userNotificationContainer');
+    if (userNotificationsContainer) {
+        getUserNotifications();
+        observer.disconnect(); 
+    }
+});
+
+userNotifObserver.observe(document.body, { childList: true, subtree: true });
+
+const charityObserver = new MutationObserver((mutationsList, observer) => {
+    const currentNewCharityContainer = document.getElementById('currentNewCharityContainer');
+    if (currentNewCharityContainer) {
+        getCharity();
+        observer.disconnect(); 
+    }
+});
+
+charityObserver.observe(document.body, { childList: true, subtree: true });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const userProfileComponent = document.getElementById(
@@ -261,3 +286,69 @@ function cancelCharityRequest(charityRequestID) {
     });
 }
 window.cancelCharityRequest = cancelCharityRequest;
+
+function getUserNotifications() {
+    $.ajax({
+        url: '/user-notifications/show',
+        type: 'GET',
+        success: function (response) {
+            $('#userNotificationContainer').empty();
+            $('#userNotificationContainer').html(response);
+        },
+        error: function (xhr) {
+            console.error(xhr);
+        }
+    });
+}
+window.getUserNotifications = getUserNotifications;
+
+function markNotificationAsRead(notificationID) {
+    $.ajax({
+        url: '/mark-as-read/' + notificationID,
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            // console.log(response);
+
+            getProfile();
+        },
+        error: function (xhr) {
+            console.error(xhr);
+        }
+    });
+}
+window.markNotificationAsRead = markNotificationAsRead;
+
+function getCharity(charityID) {
+    if (!charityID) {
+        charityID = '';
+    }
+    $.ajax({
+        url: '/charity/show/' + charityID,
+        type: 'GET',
+        success: function (response) {
+            // console.log(response);
+            $('#currentNewCharityContainer').empty();
+            $('#currentNewCharityContainer').html(response);
+        },
+        error: function (xhr) {
+            console.error(xhr);
+        }
+    });
+}
+window.getCharity = getCharity;
+
+
+const endDate = new Date('2025-12-31T23:59:59');
+const timer = countdown(function (ts) {
+
+    const countdownElement = document.getElementById('charityCountdownTimer');
+
+    if (countdownElement) {
+        countdownElement.textContent = `${ts.days}d ${ts.hours}h ${ts.minutes}m ${ts.seconds}s`;
+    }
+}, endDate);
+
+window.timer = timer;

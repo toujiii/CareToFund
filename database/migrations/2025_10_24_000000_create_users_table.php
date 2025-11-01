@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('email', 50)->unique();
             $table->string('password', 255);
             $table->string('gcash_number', 11)->nullable();
-            $table->enum('status', ['Active', 'Offline', 'Pending'])->default('Active');
+            $table->enum('status', ['Active', 'Offline', 'Pending', 'Notified'])->default('Active');
             $table->string('role', 11)->nullable();
 
             // Pang gmail/facebook login

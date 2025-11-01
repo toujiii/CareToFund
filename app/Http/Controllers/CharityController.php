@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Charity;
+use App\Models\Charity_Request;
 use Illuminate\Http\Request;
 
 class CharityController extends Controller
@@ -34,9 +35,18 @@ class CharityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Charity $charity)
+    public function show(Request $request)
     {
-        //
+        if ($request->user()->role != 'admin') {
+
+            $charityRequestID = Charity_Request::where('user_id', $request->user()->id)->orderBy('datetime', 'desc')->first()->request_id;
+
+            $charity = Charity::with('charity_request')->where('request_id', $charityRequestID)->first();
+
+            return view('includes.userIncludes.currentCharity.currentNewCharity', ['charity' => $charity]);
+
+        }
+        
     }
 
     /**

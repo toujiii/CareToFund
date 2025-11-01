@@ -81,12 +81,14 @@
             <button x-on:click="isRejectRequestModalOpen = '{{ $charityRequest->request_id }}'" class="btn-red-color text-xs md:text-sm w-20">
                 Reject
             </button>
-            <button x-on:click="isApproveRequestModalOpen = true" class="btn-green-color text-xs md:text-sm">
+            <button x-on:click="isApproveRequestModalOpen = '{{ $charityRequest->request_id }}'" class="btn-green-color text-xs md:text-sm">
                 Approve
             </button>
         </div>
         
         @include('includes.adminIncludes.adminModals.rejectRequestModal.adminRejectRequest', ['charityRequestID' => $charityRequest->request_id])
+
+        @include('includes.adminIncludes.adminModals.approveRequestModal.adminApproveRequest', ['charityRequestID' => $charityRequest->request_id])
 
         @endif
     </div>

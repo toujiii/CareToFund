@@ -1,8 +1,8 @@
 <div
-    class=" fixed inset-0  z-50 w-full h-full flex items-center justify-center "
+    class=" fixed inset-0  z-60 w-full h-full flex items-center justify-center "
     role="dialog"
     tabindex="-1"
-    x-show="isRejectRequestModalOpen === '{{ $charityRequestID }}'"
+    x-show="isRejectRequestModalOpen === '{{ $charityRequestID }}'; "
     x-transition.enter.opacity.duration.200ms
     >
     <div class="bg-black/60 z-40 backdrop-blur-xs w-full h-full absolute" x-on:click="isRejectRequestModalOpen = false;"></div>
@@ -28,7 +28,7 @@
             </button>
             <button 
                 class="btn-pink text-sm w-24 ml-2" 
-                x-on:click=" isRejectRequestModalOpen = false; "
+                x-on:click=" isRejectRequestModalOpen = false; if (isViewMoreDetailsModalOpen) isViewMoreDetailsModalOpen = false;"
                 onclick="rejectCharityRequest('{{ $charityRequestID }}')"
             >
                 Confirm

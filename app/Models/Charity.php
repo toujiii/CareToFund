@@ -39,10 +39,10 @@ class Charity extends Model
     public const STATUS_CANCELLED = 'Cancelled';
 
     // // relations
-    // public function request()
-    // {
-    //     return $this->belongsTo(CharityRequest::class, 'request_id', 'request_id');
-    // }
+    public function charity_request()
+    {
+        return $this->belongsTo(Charity_Request::class, 'request_id', 'request_id');
+    }
 
     // public function donators()
     // {

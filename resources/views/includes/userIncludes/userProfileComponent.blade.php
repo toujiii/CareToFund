@@ -46,9 +46,16 @@
 
         @elseif($user->status === 'Active')
 
-            @include('includes.userIncludes.currentCharity.currentNewCharity')
-        <!-- @elseif($user->status === 'Notified')
-            @include('includes.userIncludes.currentCharity.userNotif') -->
+            <div id="currentNewCharityContainer">
+
+            </div>
+
+        @elseif($user->status === 'Notified')
+
+            <div id="userNotificationContainer">
+
+            </div>
+
         @endif
 
     @endif

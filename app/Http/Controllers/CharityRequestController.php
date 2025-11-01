@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Charity;
 use App\Models\Charity_Request;
+use App\Models\User_Notifications;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -99,13 +101,13 @@ class CharityRequestController extends Controller
             $charity_Request->id_number = $request->input('id_number');
             $charity_Request->datetime = now();
             $charity_Request->user_id = $user->id;
-            $charity_Request->request_status = 'Pending';
+            $charity_Request->request_status = Charity_Request::STATUS_PENDING;
             $charity_Request->id_att_link = $idImagePath;
             $charity_Request->front_face_link = $frontFacePath;
             $charity_Request->side_face_link = $sideFacePath;
             $charity_Request->save();
 
-            $user->status = 'Pending';
+            $user->status = User::STATUS_PENDING;
             $user->save(); 
 
             DB::commit();
@@ -187,10 +189,10 @@ class CharityRequestController extends Controller
                 return response()->json(['message' => 'Charity request not found.'], 404);
             }
 
-            $charityRequest->request_status = 'Cancelled';
+            $charityRequest->request_status = Charity_Request::STATUS_CANCELLED;
             $charityRequest->save();
 
-            $user->status = 'Offline';
+            $user->status = User::STATUS_OFFLINE;
             $user->save();
 
             DB::commit();
@@ -218,12 +220,19 @@ class CharityRequestController extends Controller
                 return response()->json(['message' => 'Charity request not found.'], 404);
             }
 
-            $charityRequest->request_status = 'Rejected';
+            $charityRequest->request_status = Charity_Request::STATUS_REJECTED;
             $charityRequest->save();
 
             $user = $charityRequest->user;
-            $user->status = 'Offline';
+            $user->status = User::STATUS_NOTIFIED;
             $user->save();
+
+            $notification = new User_Notifications();
+            $notification->user_id = $user->id;
+            $notification->title = 'Charity Request Rejected';
+            $notification->message = 'Your charity request titled "' . $charityRequest->title . '" has been rejected due to policy violations or inability to meet the requirements.';
+            $notification->is_read = false;
+            $notification->save();
 
             DB::commit();
 
@@ -236,6 +245,45 @@ class CharityRequestController extends Controller
             Log::error('Error rejecting charity request: ' . $e->getMessage(), ['exception' => $e]);
 
             return response()->json(['message' => 'An error occurred while rejecting the charity request.'], 500);
+        }
+    }
+
+    public function approveCharityRequest($charityRequestID)
+    {
+        try {
+            DB::beginTransaction();
+
+            $charityRequest = Charity_Request::findOrFail($charityRequestID);
+
+            if (!$charityRequest) {
+                return response()->json(['message' => 'Charity request not found.'], 404);
+            }
+
+            $charityRequest->request_status = Charity_Request::STATUS_APPROVED;
+            $charityRequest->approved_datetime = now();
+            $charityRequest->save();
+
+            $charity = new Charity();
+            $charity->request_id = $charityRequestID;
+            $charity->raised = 0;
+            $charity->charity_status = Charity::STATUS_ONGOING;
+            $charity->save();
+
+            $user = $charityRequest->user;
+            $user->status = User::STATUS_ACTIVE;
+            $user->save();
+            
+            DB::commit();
+
+            return response()->json(['message' => 'Charity request approved successfully.'], 200);
+
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Error approving charity request: ' . $e->getMessage(), ['exception' => $e]);
+
+            return response()->json(['message' => 'An error occurred while approving the charity request.'], 500);
         }
     }
 

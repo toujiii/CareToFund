@@ -14,29 +14,34 @@
     <p class="text-sm text-gray-300 ">
         Here are more details about this charity request. You can review the information provided by the user before making a decision.
     </p>
+    @if ($focusedCharityRequest->request_status === 'Pending')
+        <div class="flex justify-between mt-2 pb-2 border-b ">
+            <p class="text-lg font-bold  self-center">
+                Action: {{  $focusedCharityRequest->request_id  }}
+            </p>
+            <div class="flex gap-2">
+                <button x-on:click="isRejectRequestModalOpen = '{{  $focusedCharityRequest->request_id  }}'" class="btn-red-color text-xs md:text-sm w-20">
+                    Reject
+                </button>
+                <button x-on:click="isApproveRequestModalOpen = '{{  $focusedCharityRequest->request_id  }}'" class="btn-green-color text-xs md:text-sm">
+                    Approve
+                </button>
+            </div>
 
-    <div class="flex justify-between mt-2 pb-2 border-b ">
-        <p class="text-lg font-bold  self-center">
-            Action:
-        </p>
-        <div class="flex gap-2">
-            <button x-on:click="isRejectRequestModalOpen = true" class="btn-red-color text-xs md:text-sm w-20">
-                Reject
-            </button>
-            <button x-on:click="isApproveRequestModalOpen = true" class="btn-green-color text-xs md:text-sm">
-                Approve
-            </button>
+            @include('includes.adminIncludes.adminModals.rejectRequestModal.adminRejectRequest', ['charityRequestID' => $focusedCharityRequest->request_id])
+
+            @include('includes.adminIncludes.adminModals.approveRequestModal.adminApproveRequest', ['charityRequestID' => $focusedCharityRequest->request_id])
         </div>
-    </div>
+    @endif
 
     @include('includes.adminIncludes.adminModals.viewMoreDetailsModal.basicDetails')
 
-    <div x-show="viewMoreDetailsTab === 'idAndImages'" class="flex flex-col py-2 gap-2 sm:gap-4 mt-4 sm:flex-row h-130 sm:h-auto  overflow-auto">
+    <div x-show="viewMoreDetailsTab === 'idAndImages'" class="flex flex-col py-2 gap-2 sm:gap-4  sm:flex-row h-130 sm:h-auto  overflow-auto">
 
         @include('includes.adminIncludes.adminModals.viewMoreDetailsModal.idAndImages')
 
     </div>
-    <div x-show="viewMoreDetailsTab === 'imagesComparison'" class="flex flex-col py-2 gap-2 sm:gap-4 mt-4 sm:flex-row h-130 sm:h-auto  overflow-auto">
+    <div x-show="viewMoreDetailsTab === 'imagesComparison'" class="flex flex-col py-2 gap-2 sm:gap-4 sm:flex-row h-130 sm:h-auto  overflow-auto">
 
         @include('includes.adminIncludes.adminModals.viewMoreDetailsModal.imagesComparison')
 
@@ -53,4 +58,5 @@
         </button>
     </div>
 </div>
+
 

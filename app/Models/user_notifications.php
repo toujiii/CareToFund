@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class user_notifications extends Model
+class User_Notifications extends Model
 {
+
+    use HasFactory;
+    
     protected $table = 'user_notifications';
     protected $primaryKey = 'notif_id';
     public $timestamps = true;

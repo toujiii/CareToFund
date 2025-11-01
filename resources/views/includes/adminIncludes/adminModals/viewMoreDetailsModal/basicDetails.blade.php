@@ -39,7 +39,7 @@
     <p class="text-xl font-bold py-2">
         {{ $focusedCharityRequest->title }}
     </p>
-    <p class="text-sm mb-2 max-h-25 overflow-auto">
+    <p class="text-sm my-2 max-h-25 overflow-auto">
         {{ $focusedCharityRequest->description }}
 
     </p>

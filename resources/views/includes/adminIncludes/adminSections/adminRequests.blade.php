@@ -36,9 +36,9 @@
 
 <!-- Modal Section -->
 
-
-
-@include('includes.adminIncludes.adminModals.approveRequestModal.adminApproveRequest')
-
 @include('includes.adminIncludes.adminModals.viewMoreDetailsModal.adminViewMoreDetails')
+
+
+
+
 

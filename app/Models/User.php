@@ -58,4 +58,5 @@ class User extends Authenticatable
     public const STATUS_PENDING = 'Pending';
     public const STATUS_ACTIVE = 'Active';
     public const STATUS_OFFLINE = 'Offline';
+    public const STATUS_NOTIFIED = 'Notified';
 }

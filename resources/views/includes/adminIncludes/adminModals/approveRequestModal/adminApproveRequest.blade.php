@@ -1,14 +1,14 @@
 <div
-    class=" fixed inset-0  z-50 w-full h-full flex items-center justify-center "
+    class=" fixed inset-0  z-60 w-full h-full flex items-center justify-center "
     role="dialog"
     tabindex="-1"
-    x-show="isApproveRequestModalOpen"
+    x-show="isApproveRequestModalOpen === '{{ $charityRequestID }}'"
     x-transition.enter.opacity.duration.200ms
     >
     <div class="bg-black/60 z-40 backdrop-blur-xs w-full h-full absolute" x-on:click="isApproveRequestModalOpen = false;"></div>
     <div
         class="relative z-100 bg-light-dark rounded-lg flex flex-col max-w-2xl shadow-lg m-2 overflow-y-auto p-4 h-fit"
-        x-show="isApproveRequestModalOpen"
+        x-show="isApproveRequestModalOpen === '{{ $charityRequestID }}'"
         x-transition.enter.scale.duration.200ms>
         <div class="flex justify-between pb-2 border-b mb-2 gap-4">
             <p class=" text-2xl font-bold"> Approve Charity</p>
@@ -19,14 +19,18 @@
             </button>
         </div>
         <p class="text-base my-4">
-            Are you sure you want to approve this charity?
+            Are you sure you want to approve this charity? 
         </p>
 
         <div class="flex justify-end mt-4">
             <button class="bg-light hover:bg-light cursor-pointer rounded-md text-sm w-24" x-on:click="isApproveRequestModalOpen = false; ">
                 Cancel
             </button>
-            <button class="btn-pink text-sm w-24 ml-2" x-on:click=" isApproveRequestModalOpen = false; ">
+            <button 
+                class="btn-pink text-sm w-24 ml-2" 
+                x-on:click=" isApproveRequestModalOpen = false; if (isViewMoreDetailsModalOpen) isViewMoreDetailsModalOpen = false;"
+                onclick="approveCharityRequest('{{ $charityRequestID }}')"
+            >
                 Confirm
             </button>
         </div>

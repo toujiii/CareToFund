@@ -10,7 +10,7 @@
         adminSectionActive: 'requests',
         isCancelCharityModalOpen: false,
         isRejectRequestModalOpen: '',
-        isApproveRequestModalOpen: false,
+        isApproveRequestModalOpen: '',
         isViewDonationsModalOpen: false,
         isViewMoreDetailsModalOpen: false,
         viewMoreDetailsTab: 'idAndImages',

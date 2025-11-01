@@ -7,14 +7,19 @@
             </svg>
         </p>
         <p class="text-base font-bold">
-            Notice
+            Notice: 
         </p>
     </div>
+    <p class="text-base font-semibold" >
+        {{ $userNotifContent->title }}
+    </p>
     <p class="text-sm" id="userNotifMessage">
-        Your current charity requests have been cancelled due inability to comply with the verification requirements.
+        {{ $userNotifContent->message }}
     </p>
     <div class="w-full flex justify-end">
-        <button class="btn-pink">
+        <button class="btn-pink"
+            onclick="markNotificationAsRead('{{ $userNotifContent->notif_id }}')"
+        >
             Mark as Read
         </button>
     </div>
