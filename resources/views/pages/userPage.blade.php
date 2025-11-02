@@ -3,7 +3,6 @@
 @section('userContent')
 
 
-
 <div
     x-data="{ 
         open: true, 

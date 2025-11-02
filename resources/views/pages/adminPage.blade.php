@@ -19,6 +19,7 @@
         isArchiveUserModalOpen: false,
         charityRequestSortBy: '',
         responseModal: false,
+        isRestoreUserModalOpen: false,
     }"
     x-init="
         adminScreenWidth = window.innerWidth;

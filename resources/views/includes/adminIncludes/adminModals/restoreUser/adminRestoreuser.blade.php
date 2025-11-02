@@ -2,24 +2,24 @@
     class=" fixed inset-0  z-50 w-full h-full flex items-center justify-center "
     role="dialog"
     tabindex="-1"
-    x-show="isEditUsersModalOpen"
+    x-show="isRestoreUserModalOpen"
     x-transition.enter.opacity.duration.200ms
 >
     <div
         class="bg-black/60 z-40 backdrop-blur-xs w-full h-full absolute"
-        x-on:click="isEditUsersModalOpen = false;"
+        x-on:click="isRestoreUserModalOpen = false;"
     ></div>
     <div
         class="relative z-100 bg-light-dark rounded-lg flex flex-col max-w-2xl shadow-lg m-2 overflow-y-auto p-4 h-fit"
-        x-show="isEditUsersModalOpen"
+        x-show="isRestoreUserModalOpen"
         x-transition.enter.scale.duration.200ms
     >
         <div class="flex justify-between pb-2 border-b mb-2 gap-4">
-            <p class=" text-2xl font-bold">Edit User</p>
+            <p class=" text-2xl font-bold">Restore User</p>
             <button
                 class="hover:text-gray-300 cursor-pointer"
                 aria-label="Close"
-                x-on:click="isEditUsersModalOpen=false"
+                x-on:click="isRestoreUserModalOpen=false"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -35,36 +35,36 @@
                 </svg>
             </button>
         </div>
-        <p class="text-sm text-gray-300">
-            You can edit user details here after changing the information, just click the "Save Changes" button below.
+        <p class="text-base my-4">
+            Are you sure you want to restore this user?
         </p>
-        <form class="flex flex-col ">
-            <span
-                id="updateProfileError"
-                class="text-red-500 text-sm mb-4"
-            ></span>
-            <label class="mb-2 font-semibold text-sm">Username</label>
-            <input
-                type="text"
-                name="name"
-                placeholder="Username"
-                value="John Doe"
-                class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white"
-            >
-            <label class="mb-2 font-semibold text-sm">Email</label>
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value="johndoe@gmail.com"
-                class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white"
-            >
+
+        <div class="flex justify-end mt-4">
             <button
-                type="submit"
-                class="btn-tertiary-purple mt-12"
+                class="bg-light hover:bg-light cursor-pointer rounded-md text-sm w-24"
+                x-on:click="isRestoreUserModalOpen = false; "
             >
-                Save Changes
+                Cancel
             </button>
-        </form>
+            <form
+                :action="`/admin/users/restore/${selectedUserId}`"
+                method="POST"
+                class="ml-2"
+            >
+                @csrf
+                @method('PUT')
+                <input
+                    type="hidden"
+                    name="user_id"
+                    :value="selectedUserId"
+                >
+                <button
+                    type="submit"
+                    class="btn-pink text-sm w-24"
+                >
+                    Confirm
+                </button>
+            </form>
+        </div>
     </div>
 </div>
