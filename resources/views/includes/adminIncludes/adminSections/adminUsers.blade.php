@@ -4,9 +4,13 @@
         users: [],
         selectedUser: null,
         selectedUserId: null,
+        selectedUserName: null,
+        selectedUserEmail: null,
         selectUser(user) {
             this.selectedUser = user;
-            this.selectedUserId = user?.id ?? null
+            this.selectedUserId = user?.id ?? null;
+            this.selectedUserName = user?.name ?? null;
+            this.selectedUserEmail = user?.email ?? null;
         },
         async loadUsers() {
             try {

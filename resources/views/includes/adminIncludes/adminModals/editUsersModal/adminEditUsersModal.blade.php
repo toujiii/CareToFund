@@ -38,17 +38,20 @@
         <p class="text-sm text-gray-300">
             You can edit user details here after changing the information, just click the "Save Changes" button below.
         </p>
-        <form class="flex flex-col ">
+        <form class="flex flex-col " :action="`/admin/users/${selectedUserId}`" method="POST">
+            @csrf
+            @method('PUT')
             <span
                 id="updateProfileError"
                 class="text-red-500 text-sm mb-4"
             ></span>
+            <input type="hidden" name="id" :value="selectedUserId">
             <label class="mb-2 font-semibold text-sm">Username</label>
             <input
                 type="text"
                 name="name"
                 placeholder="Username"
-                value="John Doe"
+                :value="selectedUserName"
                 class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white"
             >
             <label class="mb-2 font-semibold text-sm">Email</label>
@@ -56,7 +59,7 @@
                 type="email"
                 name="email"
                 placeholder="Email"
-                value="johndoe@gmail.com"
+                :value="selectedUserEmail"
                 class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white"
             >
             <button
