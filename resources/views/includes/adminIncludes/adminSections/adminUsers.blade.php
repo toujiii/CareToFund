@@ -28,7 +28,8 @@
             return this.users.filter(u => u.deleted_at);
         }
     }"
-    x-init="loadUsers()"
+    {{-- Event para hindi bumalik sa request yung active tab --}}
+    x-init="loadUsers(); window.dispatchEvent(new CustomEvent('admin-section-active', { detail: 'users' }))"
     class="bg-light-dark w-full h-full border-gray-500 border rounded-lg p-4 text-white overflow-auto flex flex-col "
 >
     <div class="flex justify-between gap-4 flex-col md:flex-row ">

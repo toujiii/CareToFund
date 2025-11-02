@@ -15,7 +15,6 @@
             @endforeach
         </ul>
         <script>
-            // when there are validation errors after redirect, tell the Alpine root to open the register tab
             window.addEventListener('DOMContentLoaded', function () {
                 window.dispatchEvent(new CustomEvent('set-active-tab', { detail: 'register' }));
             });

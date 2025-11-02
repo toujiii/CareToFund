@@ -29,7 +29,7 @@
             openSideMenu = value > 1000 ? true : false; 
             adminMobile = value > 1000 ? false : true; 
     });"
-
+    x-on:admin-section-active.window="adminSectionActive = $event.detail"
     class="flex h-screen"
     @resize.window="adminScreenWidth = window.innerWidth"
     @success-modal.window="responseModal = true"
