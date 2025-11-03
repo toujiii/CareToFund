@@ -21,6 +21,7 @@
         charitiesSortBy: '',
         responseModal: false,
         isRestoreUserModalOpen: false,
+        {{-- responseModal: false, --}}
     }"
     x-init="
         adminScreenWidth = window.innerWidth;

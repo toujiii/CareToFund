@@ -86,5 +86,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
     // User Charity Sections
     Route::post('/cancel-charity-list/{charityID}', [CharityController::class, 'cancelCharity'])->name('charity.cancel');
-});
+// });
 

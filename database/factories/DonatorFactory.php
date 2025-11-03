@@ -17,7 +17,13 @@ class DonatorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'charity_id' => \App\Models\Charity::factory(),
+            'amount' => $this->faker->randomFloat(2, 50, 50000),
+            'message' => $this->faker->optional()->sentence(),
+            'status' => $this->faker->randomElement(['completed', 'pending', 'failed']),
+            'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
+            'updated_at' => now(),
         ];
     }
 }
