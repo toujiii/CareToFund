@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password',
         'gcash_number',
         'status',
-        // 'role',
+        'role',
         'provider',
         'provider_id',
         'avatar',

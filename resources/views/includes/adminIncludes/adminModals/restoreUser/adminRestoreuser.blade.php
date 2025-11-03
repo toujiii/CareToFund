@@ -2,24 +2,24 @@
     class=" fixed inset-0  z-50 w-full h-full flex items-center justify-center "
     role="dialog"
     tabindex="-1"
-    x-show="isArchiveUserModalOpen"
+    x-show="isRestoreUserModalOpen"
     x-transition.enter.opacity.duration.200ms
 >
     <div
         class="bg-black/60 z-40 backdrop-blur-xs w-full h-full absolute"
-        x-on:click="isArchiveUserModalOpen = false;"
+        x-on:click="isRestoreUserModalOpen = false;"
     ></div>
     <div
         class="relative z-100 bg-light-dark rounded-lg flex flex-col max-w-2xl shadow-lg m-2 overflow-y-auto p-4 h-fit"
-        x-show="isArchiveUserModalOpen"
+        x-show="isRestoreUserModalOpen"
         x-transition.enter.scale.duration.200ms
     >
         <div class="flex justify-between pb-2 border-b mb-2 gap-4">
-            <p class=" text-2xl font-bold">Archive User</p>
+            <p class=" text-2xl font-bold">Restore User</p>
             <button
                 class="hover:text-gray-300 cursor-pointer"
                 aria-label="Close"
-                x-on:click="isArchiveUserModalOpen=false"
+                x-on:click="isRestoreUserModalOpen=false"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -36,23 +36,23 @@
             </button>
         </div>
         <p class="text-base my-4">
-            Are you sure you want to archive this user?
+            Are you sure you want to restore this user?
         </p>
 
         <div class="flex justify-end mt-4">
             <button
                 class="bg-light hover:bg-light cursor-pointer rounded-md text-sm w-24"
-                x-on:click="isArchiveUserModalOpen = false; "
+                x-on:click="isRestoreUserModalOpen = false; "
             >
                 Cancel
             </button>
             <form
-                :action="`/admin/users/${selectedUserId}`"
+                :action="`/admin/users/restore/${selectedUserId}`"
                 method="POST"
                 class="ml-2"
             >
                 @csrf
-                @method('DELETE')
+                @method('PUT')
                 <input
                     type="hidden"
                     name="user_id"

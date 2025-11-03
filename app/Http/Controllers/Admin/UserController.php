@@ -16,9 +16,11 @@ class UserController extends Controller
     {
         // If the request includes with_trashed=1, return trashed users as well
         if ($request->query('with_trashed')) {
-            $users = User::withTrashed()->get();
+            $users = User::withTrashed()
+            ->where('role', 'user')
+            ->get();
         } else {
-            $users = User::all();
+            $users = User::where('role', 'user')->get();
         }
 
         return response()->json($users);
@@ -61,7 +63,10 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::withTrashed()->findOrFail($id);
+        $data = $request->only(['name', 'email']);
+        $user->update($data);
+        return redirect()->back()->with('success', 'User updated.');
     }
 
     public function destroy(string $id)

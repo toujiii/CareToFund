@@ -23,6 +23,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'status' => 'Offline',
+            'role' => 'user',
         ]);
         }
         catch(\Exception $e){
@@ -31,7 +32,7 @@ class RegisterController extends Controller
             
         }
 
-        Auth::login($user);
+        // Auth::login($user);
 
         return redirect('/');
     }

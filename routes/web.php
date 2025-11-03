@@ -17,25 +17,28 @@ Route::resource('charity', CharityController::class)->only('index');
 Route::post('/charity/update', [CharityController::class, 'update'])->name('charity.update-status');
 
 
-Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])
     ->name('social.redirect')
     ->where('provider', 'google|facebook');
-
+Route::get('/forceLogout', function (Request $request) {
+    Auth::logout();
+    return redirect('/');
+});
 Route::get('auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])
     ->name('social.callback')
     ->where('provider', 'google|facebook');
 
+
 Route::get('/', function () {
     return view('pages.userPage');
 });
-Route::resource('users', UserController::class);
-    // ->only('index', 'show');
-Route::resource('admin', AdminController::class);
 
-Route::middleware(['auth'])->group(function () {
+
+
+Route::middleware(['auth', 'role:user'])->group(function () {
     // Profile Controller Sections
     Route::put('/update-profile', [ProfileController::class, 'updateInfo'])->name('update-profile');
     Route::put('/reset-password', [ProfileController::class, 'resetPassword'])->name('reset-password');
@@ -64,13 +67,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', function () {
         return view('pages.adminPage');
     });
-
+    // Route::resource('admin', AdminController::class);
+    Route::softDeletableResources([
+        '/admin/users' => UserController::class,
+    ]);
+    Route::delete('/admin/users/forceDelete/{userID}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete');
+    Route::put('/admin/users/restore/{userID}', [UserController::class, 'restore'])->name('admin.users.restore');
     // Charity Request Controller Sections
     Route::resource('charity-requests', CharityRequestController::class)->only('index');
     Route::get('charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
     Route::post('/reject-charity-request/{charityRequestID}', [CharityRequestController::class, 'rejectCharityRequest'])->name('charity-requests.reject');
     Route::post('/approve-charity-request/{charityRequestID}', [CharityRequestController::class, 'approveCharityRequest'])->name('charity-requests.approve');
 
+    //ProperNaming Po
+    Route::resource('/admin/charity-requests', CharityRequestController::class)->only('index', 'update');
+    Route::get('/admin/charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
+    Route::post('/admin/reject-charity-request/{charityRequestID}', [CharityRequestController::class, 'rejectCharityRequest'])->name('charity-requests.reject');
+});
     // User Charity Sections
     Route::post('/cancel-charity-list/{charityID}', [CharityController::class, 'cancelCharity'])->name('charity.cancel');
 });
