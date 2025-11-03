@@ -59,4 +59,19 @@ class User extends Authenticatable
     public const STATUS_ACTIVE = 'Active';
     public const STATUS_OFFLINE = 'Offline';
     public const STATUS_NOTIFIED = 'Notified';
+
+    public function donators()
+    {
+        return $this->hasMany(Donator::class, 'user_id', 'id');
+    }
+
+    public function charity_request()
+    {
+        return $this->hasMany(Charity_Request::class, 'user_id', 'id');
+    }
+
+    public function user_notifications()
+    {
+        return $this->hasMany(User_Notifications::class, 'user_id', 'id');
+    }
 }

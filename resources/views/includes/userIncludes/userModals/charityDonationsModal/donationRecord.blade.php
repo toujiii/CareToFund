@@ -11,17 +11,19 @@
 </p>
 
 <div class="flex flex-col gap-4 w-full max-h-115 overflow-y-auto rounded-lg ">
-    @for($i = 0; $i < 10; $i++)
+    @foreach($user->donators->sortByDesc('created_at') as $donation)
         <div class="bg-light hover:bg-light p-4 rounded-md ">
-            <p class="font-semibold  ">Donation to Save the Children</p>
-            <p class="text-sm text-gray-300">Charity Admin: John Doe</p>
-            <p class="text-sm text-gray-300">Donated on: June 10, 2024</p>
-            <p class="text-sm font-semibold text-end text-yellow-200 border-t border-white mt-2 pt-2">Donated: PHP 100.00</p>
+            <p class="font-semibold  ">{{ $donation->charity->charity_request->title }}</p>
+            <p class="text-sm text-gray-300">Charity Admin: {{ ucfirst(explode(' ', $donation->charity->charity_request->user->name)[0]) }}</p>
+            <p class="text-sm text-gray-300">Donated on: {{ $donation->created_at->format('F d, Y') }}</p>
+            <p class="text-sm font-semibold text-end text-yellow-200 border-t border-white mt-2 pt-2">Donated: PHP {{ number_format($donation->amount, 2) }}</p>
         </div>
-    @endfor
-    <div class="bg-light p-4 rounded-md text-center">
-        <p class="text-sm text-gray-300">
-            No donation records found.
-        </p>
-    </div>
+    @endforeach
+    @if($user->donators->isEmpty())
+        <div class="bg-light p-4 rounded-md text-center">
+            <p class="text-sm text-gray-300">
+                No donation records found.
+            </p>
+        </div>
+    @endif
 </div>

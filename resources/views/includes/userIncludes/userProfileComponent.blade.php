@@ -82,11 +82,10 @@
 
 
 
-@include('includes.userIncludes.userModals.donationModal.userDonations')
 
 
 
-@include('includes.userIncludes.userModals.viewDonationsModal.userViewDonations')
+
 
 @include('includes.userIncludes.userModals.responseModal.responseModal')
 

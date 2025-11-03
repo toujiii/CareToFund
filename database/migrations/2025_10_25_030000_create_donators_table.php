@@ -19,7 +19,7 @@ return new class extends Migration {
 
             $table->integer('amount');
             $table->timestamps();
-            $table->boolean('is_anonymous')->default(false);
+            $table->string('is_anonymous');
 
             // indexes and FKs
             $table->index('user_id');

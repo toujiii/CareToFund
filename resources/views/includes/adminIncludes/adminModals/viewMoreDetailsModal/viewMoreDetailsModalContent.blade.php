@@ -17,7 +17,7 @@
     @if ($focusedCharityRequest->request_status === 'Pending')
         <div class="flex justify-between mt-2 pb-2 border-b ">
             <p class="text-lg font-bold  self-center">
-                Action: {{  $focusedCharityRequest->request_id  }}
+                Action
             </p>
             <div class="flex gap-2">
                 <button x-on:click="isRejectRequestModalOpen = '{{  $focusedCharityRequest->request_id  }}'" class="btn-red-color text-xs md:text-sm w-20">

@@ -7,22 +7,24 @@
     </button>
 </div>
 <p class="mb-4 text-sm text-gray-300">
-    Here is a record of your charity activities. You can review the details of each charity below.
+    Here is a record of your finished charity activities. You can review the details of each charity below.
 </p>
 
 <div class="flex flex-col gap-4 w-full max-h-115 overflow-y-auto rounded-lg ">
-    @for($i = 0; $i < 10; $i++)
+    @foreach($charities->reverse() as $charity)
         <div class="bg-light hover:bg-light p-4 rounded-md ">
-            <p class="font-semibold  ">Donation to Save the Children</p>
-            <p class="text-sm text-gray-300">Started On: June 10, 2024</p>
-            <p class="text-sm text-gray-300">Charity Duration: 7 Days</p>
-            <p class="text-sm text-gray-300">Charity Goal: PHP 5,000.00</p>
-            <p class="text-sm font-semibold text-end text-green-300 border-t border-white mt-2 pt-2">Charity Raised: PHP 52,000.00</p>
+            <p class="font-semibold  ">{{ $charity->charity_request->title }}</p>
+            <p class="text-sm text-gray-300">Started On: {{ $charity->charity_request->approved_datetime->format('F d, Y') }}</p>
+            <p class="text-sm text-gray-300">Charity Duration: {{ $charity->charity_request->duration }} days</p>
+            <p class="text-sm text-gray-300">Charity Goal: PHP {{ number_format($charity->charity_request->fund_limit, 2) }}</p>
+            <p class="text-sm font-semibold text-end text-green-300 border-t border-white mt-2 pt-2">Charity Raised: PHP {{ number_format($charity->raised, 2) }}</p>
         </div>
-    @endfor
-    <div class="bg-light p-4 rounded-md text-center">
-        <p class="text-sm text-gray-300">
-            No charities records found.
-        </p>
-    </div>
+    @endforeach
+    @if($charities->isEmpty())
+        <div class="bg-light p-4 rounded-md text-center">
+            <p class="text-sm text-gray-300">
+                No charity records found.
+            </p>
+        </div>
+    @endif
 </div>

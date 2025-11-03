@@ -29,6 +29,9 @@ class CharityRequestController extends Controller
             $charityRequests = Charity_Request::with(['user'])
                 ->where('title', 'like', "%{$searchQuery}%")
                 ->orWhere('description', 'like', "%{$searchQuery}%")
+                ->orWhereHas('user', function ($query) use ($searchQuery) {
+                    $query->where('name', 'like', "%{$searchQuery}%");
+                })
                 ->orderBy('datetime', 'desc')
                 ->get();
         } else {
