@@ -33,7 +33,7 @@
         x-data="{ progress: 0 }"
         x-init="
             setTimeout(() => {
-                progress = Math.min(Math.round(({{ $charity->raised }} / {{ $charity->charity_request->fund_limit }} ) * 100), 100); 
+                progress = {{ round(($charity->raised / $charity->charity_request->fund_limit) * 100) }}; 
             }, 100);
         "
         class="w-full bg-gray-200 rounded-full my-2 overflow-hidden">
@@ -49,19 +49,24 @@
                 <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
             </svg>
-            <p id="charityCountdownTimer">
+            <p id="charityCountdownTimer" data-user-id="{{ $charity->charity_request->user->id }}" data-charity-id="{{ $charity->charity_id }}" data-charity-end-date="{{ \Carbon\Carbon::parse($charity->charity_request->approved_datetime)->addDays(7) }}">
+            
+
               
             </p>
         </div>
-        <button title="Donations" class=" flex items-center gap-1 btn-tertiary-purple p-2 rounded-lg " x-on:click="isViewDonationsModalOpen = true;">
+        <button title="Donations" class=" flex items-center gap-1 btn-tertiary-purple p-2 rounded-lg " x-on:click="isViewDonationsModalOpen = '{{ $charity->charity_id }}';">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                 <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
             </svg>
             <p class="text-xs ">
-                54
+                {{ $charity->donators->count() }}
             </p>
         </button>
 
     </div>
 
 </div>
+
+
+@include('includes.userIncludes.userModals.viewDonationsModal.userViewDonations', ['charity' => $charity])

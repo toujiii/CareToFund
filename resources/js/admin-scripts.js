@@ -28,6 +28,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 
 
+
 let sortedBy = '';
 
 function loadCharityRequestsSection(sortBy, searchQuery) {
@@ -47,8 +48,9 @@ function loadCharityRequestsSection(sortBy, searchQuery) {
             "sort_by": sortBy,
             "search_query": searchQuery
         },
-        success: function (data) {
-            $('#charityRequestsSectionContainer').html(data);
+        success: function (response) {
+            $('#charityRequestsSectionContainer').empty();
+            $('#charityRequestsSectionContainer').html(response);
             // console.log(sortedBy);
         },
         error: function (error) {
@@ -106,3 +108,5 @@ function approveCharityRequest(requestId) {
     });
 }
 window.approveCharityRequest = approveCharityRequest;
+
+

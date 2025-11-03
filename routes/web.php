@@ -10,7 +10,12 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CharityController;
 use App\Http\Controllers\UserNotifController;
-use App\Models\Charity;
+use App\Http\Controllers\DonatorController;
+use App\Models\Donator;
+
+Route::resource('charity', CharityController::class)->only('index');
+Route::post('/charity/update', [CharityController::class, 'update'])->name('charity.update-status');
+
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -48,6 +53,10 @@ Route::middleware(['auth'])->group(function () {
 
     // User Charity Sections
     Route::resource('charity', CharityController::class)->only('show');
+
+    // Donation Sections
+    Route::resource('donate', DonatorController::class)->only('store');
+   
 });
 
 
@@ -62,5 +71,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/reject-charity-request/{charityRequestID}', [CharityRequestController::class, 'rejectCharityRequest'])->name('charity-requests.reject');
     Route::post('/approve-charity-request/{charityRequestID}', [CharityRequestController::class, 'approveCharityRequest'])->name('charity-requests.approve');
 
-   
+    // User Charity Sections
+    Route::post('/cancel-charity-list/{charityID}', [CharityController::class, 'cancelCharity'])->name('charity.cancel');
 });
+

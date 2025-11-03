@@ -16,9 +16,10 @@
         isCreateNewCharityModalOpen: false,
         newCharityStep: 1,
         isCreateNewCharityConfirmationModalOpen: false,
-        isDonationModalOpen: false,
+        isDonationConfirmationModalOpen: '',
+        isDonationModalOpen: '',
         isCancelPendingCharityModalOpen: false,
-        isViewDonationsModalOpen: false,
+        isViewDonationsModalOpen: '',
         mobile: false, 
         frontFacePreview: null, 
         sideFacePreview: null,
@@ -65,13 +66,8 @@
 
             @include('includes.userIncludes.userNavBar')
 
-            <div class=" w-full  flex flex-col gap-4 items-start justify-center p-4 ">
-                @for ($i = 0; $i < 5; $i++)
-
-                    @include('includes.userIncludes.charityPostCard')
-
-                @endfor
-                  
+            <div class=" w-full  flex flex-col gap-4 items-start justify-center p-4 " id="charityPostsContainer">
+         
             </div>
         </div>
     </div>

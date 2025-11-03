@@ -5,11 +5,11 @@
                 My Charities
             </p>
             <p class="text-sm font-bold ">
-                4
+                {{ $charities->count() }}
             </p>
         </div>
         <button @click="isCharityDonationModalOpen = true; activeTabCharityDonations = 'charity'"  class="btn-tertiary-purple text-xs p-2 rounded-md ">
-            View All Charities
+            View Charities
         </button>
     </div>
     <div class="flex flex-col gap-2 flex-1 ">
@@ -18,11 +18,11 @@
                 My Donations
             </p>
             <p class="text-sm font-bold">
-                19
+                {{ $user->donators->count() }}
             </p>
         </div>
         <button @click="isCharityDonationModalOpen = true; activeTabCharityDonations = 'donate'"  class="btn-tertiary-purple text-xs p-2 rounded-md ">
-            View All Donations
+            View Donations
         </button>
     </div>
 </div>

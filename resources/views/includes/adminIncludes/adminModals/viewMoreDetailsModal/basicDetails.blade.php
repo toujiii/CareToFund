@@ -35,11 +35,11 @@
         @endif
     </p>
 </div>
-<div class="flex flex-col ">
-    <p class="text-xl font-bold py-2">
+<div class="flex flex-col bg-dark rounded-md p-2 mt-4 mb-2">
+    <p class="text-xl font-bold pb-2 border-b">
         {{ $focusedCharityRequest->title }}
     </p>
-    <p class="text-sm my-2 max-h-25 overflow-auto">
+    <p class="text-sm pt-2 max-h-25 overflow-auto">
         {{ $focusedCharityRequest->description }}
 
     </p>

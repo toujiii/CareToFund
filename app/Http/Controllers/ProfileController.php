@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Charity;
+use App\Models\Donator;
+use App\Models\Charity_Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +18,13 @@ class ProfileController extends Controller
     public function showProfile(Request $request)
     {
         $userID = $request->user()->id;
-        $user = User::find($userID);
+        $user = User::with('donators', 'charity_request', 'user_notifications')->find($userID);
 
-        return view('includes.userIncludes.userProfileComponent', ['user' => $user]);
+        $charities = Charity::with('charity_request')->whereHas('charity_request', function ($query) use ($user) {
+                        $query->where('user_id', $user->id);
+                    })->where('charity_status', 'Finished')->get();
+
+        return view('includes.userIncludes.userProfileComponent', ['user' => $user, 'charities' => $charities]);
     }
 
     public function updateInfo(Request $request)

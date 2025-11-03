@@ -7,11 +7,11 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
             </div>
-            <input type="search" onkeydown="loadCharityRequestsSection('', this.value)" class="block w-full p-2 ps-10 text-sm text-white rounded-xl bg-light " placeholder="Search Requests..." required />
+            <input type="search" onclick="loadCharityRequestsSection('', '')" oninput="loadCharityRequestsSection('', this.value)" class="block w-full p-2 ps-10 text-sm text-white rounded-xl bg-light " placeholder="Search Requests..." required />
         </div>
     </div>
     <div class="flex gap-2 mt-4 justify-end pb-4">
-        <button onclick="loadCharityRequestsSection('Approved', )" x-on:click="charityRequestSortBy = charityRequestSortBy === 'Approved' ? '' : 'Approved';" :class="{ 'bg-light': charityRequestSortBy === 'Approved' }" class="flex-1 px-1 py-2 bg-light-dark hover:bg-light rounded-lg border border-gray-500 text-xs md:text-sm cursor-pointer">
+        <button onclick="loadCharityRequestsSection('Approved', '')" x-on:click="charityRequestSortBy = charityRequestSortBy === 'Approved' ? '' : 'Approved';" :class="{ 'bg-light': charityRequestSortBy === 'Approved' }" class="flex-1 px-1 py-2 bg-light-dark hover:bg-light rounded-lg border border-gray-500 text-xs md:text-sm cursor-pointer">
             Approved
         </button>
         <button onclick="loadCharityRequestsSection('Pending', '')" x-on:click="charityRequestSortBy = charityRequestSortBy === 'Pending' ? '' : 'Pending';" :class="{ 'bg-light': charityRequestSortBy === 'Pending' }" class="flex-1 px-1 py-2 bg-light-dark hover:bg-light rounded-lg border border-gray-500 text-xs md:text-sm cursor-pointer">

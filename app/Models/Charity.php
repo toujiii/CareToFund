@@ -44,8 +44,8 @@ class Charity extends Model
         return $this->belongsTo(Charity_Request::class, 'request_id', 'request_id');
     }
 
-    // public function donators()
-    // {
-    //     return $this->hasMany(Donator::class, 'charity_id', 'charity_id');
-    // }
+    public function donators()
+    {
+        return $this->hasMany(Donator::class, 'charity_id', 'charity_id');
+    }
 }
