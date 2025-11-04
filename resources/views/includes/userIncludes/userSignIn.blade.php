@@ -8,7 +8,7 @@
     </script>
 @endif
 <div class="flex flex-col ">
-    <p class="text-4xl font-bold">Welcome back, Funder!</p>
+    <p class="text-4xl font-bold">Welcome back, Fuhrer!</p>
     <p class="text-sm ">
         Your kindness keeps the mission alive. Let’s make today count for someone in need.
     </p>

@@ -42,6 +42,7 @@ class SocialAuthController extends Controller
                 'provider_id' => $socialUser->getId(),
                 'avatar' => $socialUser->getAvatar(),
                 'email_verified_at' => now(),
+                'role' => 'user',
             ]);
         } else {
             // update provider columns if missing

@@ -21,7 +21,7 @@ class RoleMiddleware
         }
 
         if (Auth::user()->role !== $role) {
-            abort(403, 'Access denied. Admin privileges required.');
+            abort(403, 'Access denied. ' . ucfirst($role) . ' privileges required.');
         }
 
         return $next($request);
