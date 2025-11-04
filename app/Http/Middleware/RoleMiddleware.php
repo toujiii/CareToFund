@@ -21,7 +21,7 @@ class RoleMiddleware
         }
 
         if (Auth::user()->role !== $role) {
-            return redirect('/')->withErrors(['You do not have permission to access this page.']);
+            abort(403, 'Access denied. Admin privileges required.');
         }
 
         return $next($request);
