@@ -411,7 +411,7 @@
                 </svg>
             </button>
 
-            <template x-if="meta.last_page && meta.last_page > 1">
+            <template x-if="meta.last_page && meta.last_page > 0">
                 <div class="flex items-center gap-1">
                     <template
                         x-for="p in Array.from({length: Math.min(7, meta.last_page)}, (_,i) => {
