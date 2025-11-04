@@ -78,13 +78,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
     Route::post('/reject-charity-request/{charityRequestID}', [CharityRequestController::class, 'rejectCharityRequest'])->name('charity-requests.reject');
     Route::post('/approve-charity-request/{charityRequestID}', [CharityRequestController::class, 'approveCharityRequest'])->name('charity-requests.approve');
-
-    //ProperNaming Po
-    Route::resource('/admin/charity-requests', CharityRequestController::class)->only('index', 'update');
-    Route::get('/admin/charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
-    Route::post('/admin/reject-charity-request/{charityRequestID}', [CharityRequestController::class, 'rejectCharityRequest'])->name('charity-requests.reject');
-});
     // User Charity Sections
     Route::post('/cancel-charity-list/{charityID}', [CharityController::class, 'cancelCharity'])->name('charity.cancel');
-// });
+});
 

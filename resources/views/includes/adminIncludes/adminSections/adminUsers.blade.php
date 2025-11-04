@@ -22,10 +22,10 @@
         responseModalTitle: '',
         responseModalMessage: '',
         openResponseModal(detail) {
-            this.responseModalTitle = detail?.title ?? 'Success';
+            this.responseModalTitle = 'Success';
             this.responseModalMessage = detail?.message ?? '';
-            this.responseModal = true;
-            setTimeout(() => this.responseModal = false, 2500);
+            setTimeout(() => this.responseModal = true, 500);
+            setTimeout(() => this.responseModal = false, 2000);
         },
         async loadUsers(page) { // page is optional
             {{-- // if page is provided (not undefined), set it; otherwise keep current page --}}
@@ -75,7 +75,7 @@
         async searchUsers() {
             // normalize and trim query
             this.search = (this.search ?? '').trim();
-
+    
             // if empty, still reset to page 1 so results match expectation
             // always request page 1 for new searches
             await this.loadUsers();
@@ -148,7 +148,7 @@
                 };
                 await window.adminUserAction('PUT', `/admin/users/${encodeURIComponent(this.selectedUserId)}`, payload);
                 this.isEditUsersModalOpen = false;
-                await this.loadUsers(1);
+                await this.loadUsers();
                 this.$dispatch('success-modal', {
                     title: 'User updated',
                     message: 'User updated successfully'
@@ -173,14 +173,13 @@
     x-init="loadUsers();
     {{-- window.dispatchEvent(new CustomEvent('admin-section-active', { detail: 'users' })); --}}
     $watch('search', value => {
-            const q = (value ?? '').trim();
-            if (q === (this._lastSearch ?? '')) return;
-            this._lastSearch = q;
-            // always go to first page for a new search
-            loadUsers();
-        })
-    "
-    x-on:success-modal.window="openResponseModal($event.detail)"
+        const q = (value ?? '').trim();
+        if (q === (this._lastSearch ?? '')) return;
+        this._lastSearch = q;
+        // always go to first page for a new search
+        loadUsers();
+    })"
+    {{-- x-on:success-modal.window="openResponseModal($event.detail)" --}}
     class="bg-light-dark w-full h-full border-gray-500 border rounded-lg p-4 text-white overflow-auto flex flex-col "
 >
     <div class="flex justify-between gap-4 flex-col md:flex-row ">
@@ -392,7 +391,7 @@
             </table>
         </div>
         <!-- Pagination Controls -->
-        <div class="mt-3 flex items-center justify-end gap-2">
+        <div class="mt-auto flex items-center justify-end gap-2">
             <button
                 class="btn-tertiary-purple text-xs md:text-sm w-8 h-full flex items-center justify-center "
                 :disabled="page <= 1"
