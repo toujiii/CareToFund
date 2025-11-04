@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 
 class CharityRequestController extends Controller
@@ -140,7 +141,7 @@ class CharityRequestController extends Controller
     public function show(Request $request)
     {
 
-        if ($request->request_id && request()->user()->role === 'admin') {
+        if ($request->request_id && Auth::user()->role === 'admin') {
             $focusedCharityRequest = Charity_Request::where('request_id', $request->request_id)->first();
 
             return view('includes.adminIncludes.adminModals.viewMoreDetailsModal.viewMoreDetailsModalContent', ['focusedCharityRequest' => $focusedCharityRequest]);

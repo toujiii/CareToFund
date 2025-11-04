@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "userProfileComponent"
     );
     if (userProfileComponent) {
+        console.log("Loading user profile...");
         getProfile();
     }
     const charityPostsContainer = document.getElementById(
@@ -112,7 +113,7 @@ $(document).on("submit", "#updateProfile", function (e) {
                 $("#responseModalMessage").text(
                     "Your profile has been updated successfully."
                 );
-            }, 50);
+            }, 500);
 
             $("#responseModalTitle").text("Profile Updated");
             console.log("Updated text:", $("#responseModalTitle").text());
@@ -155,7 +156,7 @@ $(document).on("submit", "#resetPasswordForm", function (e) {
                 $("#responseModalMessage").text(
                     "Your password has been reset successfully."
                 );
-            }, 50);
+            }, 500);
             getProfile();
         },
         error: function (xhr) {
@@ -275,7 +276,7 @@ function getUserCharityRequests(requests_id) {
         requests_id = '';
     } 
     $.ajax({
-        url: '/charity-requests/show',
+        url: requests_id ? '/admin/charity-requests/show' : '/charity-requests/show',
         type: 'GET',
         data: {
             "request_id": requests_id
@@ -316,7 +317,7 @@ function cancelCharityRequest(charityRequestID) {
                     window.dispatchEvent(new CustomEvent('success-modal'));
                     $('#responseModalTitle').text('Charity Deleted');
                     $('#responseModalMessage').text('Your charity has been deleted successfully.');
-                }, 50);
+                }, 100);
             getProfile();
         },
         error: function (xhr) {

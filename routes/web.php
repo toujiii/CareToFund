@@ -12,6 +12,8 @@ use App\Http\Controllers\CharityController;
 use App\Http\Controllers\UserNotifController;
 use App\Http\Controllers\DonatorController;
 use App\Models\Donator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 Route::resource('charity', CharityController::class)->only('index');
 Route::post('/charity/update', [CharityController::class, 'update'])->name('charity.update-status');
@@ -47,7 +49,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
 
     // Charity Request Controller Sections
-    Route::resource('charity-requests', CharityRequestController::class)->only('show', 'store');
+    Route::resource('charity-requests', CharityRequestController::class)->only('store');
+    Route::get('charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
     Route::post('/cancel-charity/{charityRequestID}', [CharityRequestController::class, 'cancelCharityRequest'])->name('user-cancel-charity');
 
     // User Notifications Controller Sections
@@ -73,11 +76,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     ]);
     Route::delete('/admin/users/forceDelete/{userID}', [UserController::class, 'forceDelete'])->name('admin.users.forceDelete');
     Route::put('/admin/users/restore/{userID}', [UserController::class, 'restore'])->name('admin.users.restore');
+
     // Charity Request Controller Sections
     Route::resource('charity-requests', CharityRequestController::class)->only('index');
-    Route::get('charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
+    Route::get('/admin/charity-requests/show', [CharityRequestController::class, 'show'])->name('charity-requests.show');
     Route::post('/reject-charity-request/{charityRequestID}', [CharityRequestController::class, 'rejectCharityRequest'])->name('charity-requests.reject');
     Route::post('/approve-charity-request/{charityRequestID}', [CharityRequestController::class, 'approveCharityRequest'])->name('charity-requests.approve');
+    
     // User Charity Sections
     Route::post('/cancel-charity-list/{charityID}', [CharityController::class, 'cancelCharity'])->name('charity.cancel');
 });

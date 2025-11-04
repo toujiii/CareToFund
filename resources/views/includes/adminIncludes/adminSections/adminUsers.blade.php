@@ -392,6 +392,15 @@
         </div>
         <!-- Pagination Controls -->
         <div class="mt-auto flex items-center justify-end gap-2">
+
+            <div class="ml-4 text-sm text-gray-300 me-auto">
+                <span x-text="`Page ${page} of ${meta.last_page ?? 1}`"></span>
+                <span
+                    class="ml-2"
+                    x-text="meta.total ? `(${meta.total} users)` : ''"
+                ></span>
+            </div>
+
             <button
                 class="btn-tertiary-purple text-xs md:text-sm w-8 h-full flex items-center justify-center "
                 :disabled="page <= 1"
@@ -451,13 +460,7 @@
 
             </button>
 
-            <div class="ml-4 text-sm text-gray-300">
-                <span x-text="`Page ${page} of ${meta.last_page ?? 1}`"></span>
-                <span
-                    class="ml-2"
-                    x-text="meta.total ? `(${meta.total} users)` : ''"
-                ></span>
-            </div>
+            
 
         </div>
     </div>
