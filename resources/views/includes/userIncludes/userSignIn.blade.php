@@ -1,3 +1,12 @@
+@if ($errors->any())
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            window.dispatchEvent(new CustomEvent('set-active-tab', {
+                detail: 'signin'
+            }));
+        });
+    </script>
+@endif
 <div class="flex flex-col ">
     <p class="text-4xl font-bold">Welcome back, Funder!</p>
     <p class="text-sm ">

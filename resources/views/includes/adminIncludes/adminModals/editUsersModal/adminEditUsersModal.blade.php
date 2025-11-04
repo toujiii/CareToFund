@@ -38,7 +38,7 @@
         <p class="text-sm text-gray-300">
             You can edit user details here after changing the information, just click the "Save Changes" button below.
         </p>
-        <form class="flex flex-col " :action="`/admin/users/${selectedUserId}`" method="POST">
+        <form class="flex flex-col " :action="`/admin/users/${selectedUserId}`" method="POST" x-on:submit.prevent="saveUser()">
             @csrf
             @method('PUT')
             <span
@@ -51,7 +51,7 @@
                 type="text"
                 name="name"
                 placeholder="Username"
-                :value="selectedUserName"
+                x-model="selectedUserName"
                 class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white"
             >
             <label class="mb-2 font-semibold text-sm">Email</label>
@@ -59,7 +59,7 @@
                 type="email"
                 name="email"
                 placeholder="Email"
-                :value="selectedUserEmail"
+                x-model="selectedUserEmail"
                 class="w-full mb-4 px-3 py-2 rounded-md text-black text-sm bg-white"
             >
             <button

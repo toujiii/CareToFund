@@ -50,6 +50,7 @@
                 :action="`/admin/users/${selectedUserId}`"
                 method="POST"
                 class="ml-2"
+                x-on:submit.prevent="archiveUser(selectedUserId)"
             >
                 @csrf
                 @method('DELETE')

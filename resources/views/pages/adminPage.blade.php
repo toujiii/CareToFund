@@ -20,7 +20,10 @@
         charityRequestSortBy: '',
         charitiesSortBy: '',
         responseModal: false,
+        responseModalTitle: '',
+        responseModalMessage: '',
         isRestoreUserModalOpen: false,
+        {{-- responseModal: false, --}}
     }"
     x-init="
         adminScreenWidth = window.innerWidth;
@@ -33,7 +36,10 @@
     x-on:admin-section-active.window="adminSectionActive = $event.detail"
     class="flex h-screen"
     @resize.window="adminScreenWidth = window.innerWidth"
-    @success-modal.window="responseModal = true"
+    @success-modal.window="
+        responseModalTitle = $event.detail?.title || 'Success';
+        responseModalMessage = $event.detail?.message || '';
+        responseModal = true"
     >
     
 

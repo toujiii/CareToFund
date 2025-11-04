@@ -50,6 +50,7 @@
                 :action="`/admin/users/forceDelete/${selectedUserId}`"
                 method="POST"
                 class="ml-2"
+                x-on:submit.prevent="deleteUser(selectedUserId)"
             >
                 @csrf
                 @method('DELETE')

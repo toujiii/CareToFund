@@ -12,7 +12,7 @@
         x-transition.enter.scale.duration.200ms
         >
         <div class="flex justify-between pb-2 border-b mb-2 gap-4">
-            <p class=" text-2xl font-bold" id="responseModalTitle">
+            <p class=" text-2xl font-bold" x-text="responseModalTitle" id="responseModalTitle">
                 
             </p>
             <button class="hover:text-gray-300 cursor-pointer" aria-label="Close" x-on:click="responseModal = false;">
@@ -22,7 +22,7 @@
             </button>
         </div>
 
-        <p class="text-base my-4" id="responseModalMessage">
+        <p class="text-base my-4" x-text="responseModalMessage" id="responseModalMessage">
             
         </p>
 
